@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Модовый сервер Minecraft</title>
   <style>
     body {
@@ -11,14 +11,12 @@
       min-height: 100vh;
     }
 
-    /* Левая колонка - основное содержимое */
     .main-content {
       flex: 1;
       padding: 20px;
       box-sizing: border-box;
     }
 
-    /* Правая колонка - новости */
     .news-column {
       width: 320px;
       background-color: #f9f9f9;
@@ -39,7 +37,6 @@
       padding-bottom: 5px;
     }
 
-    /* Стили для новостей */
     .news-item {
       margin-bottom: 20px;
       padding-bottom: 10px;
@@ -53,7 +50,6 @@
       font-weight: bold;
     }
 
-    /* Ссылка на скачивание */
     a.download-link {
       display: inline-block;
       margin-top: 15px;
@@ -103,21 +99,44 @@
 
   <aside class="news-column">
     <h3>Новости сервера</h3>
-
-    <div class="news-item">
-      <div class="news-date">2025-06-01</div>
-      <p>Мы стали SMP - поздравляю игроков со сменой типа сервера. Мы переходим и утверждаем роолевой формат сервера. Вы не только можете изучать мода, но и также ролить с другими участниками, фиксировать это. Мы не сможем как в текстовых РП отслеживать Ваш ролевой процесс полностью. Здесь Вас регулируют правила и собственная совесть.</p>
-    </div>
-
-    <div class="news-item">
-      <div class="news-date">2025-05-25</div>
-      <p>Иконка сервера - изменена иконка сервера. Теперь в строке сетевой игры наш сервер выделяется костром.</p>
-    </div>
-
-    <div class="news-item">
-      <div class="news-date">2025-05-10</div>
-      <p>Новые ивенты - Вас ожидают новые ивенты, торговцы и прочее. Все почти готова для интересных отыгрышей и приключений.</p>
+    <div id="news-container">
+      <!-- Новости подгрузятся сюда -->
     </div>
   </aside>
+
+  <script>
+    // Загружаем новости из news.json и отображаем
+    fetch('news.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Ошибка загрузки новостей');
+        }
+        return response.json();
+      })
+      .then(newsData => {
+        const container = document.getElementById('news-container');
+        newsData.forEach(item => {
+          const newsItem = document.createElement('div');
+          newsItem.className = 'news-item';
+
+          const dateElem = document.createElement('div');
+          dateElem.className = 'news-date';
+          dateElem.textContent = item.date;
+
+          const textElem = document.createElement('p');
+          textElem.textContent = item.text;
+
+          newsItem.appendChild(dateElem);
+          newsItem.appendChild(textElem);
+
+          container.appendChild(newsItem);
+        });
+      })
+      .catch(error => {
+        const container = document.getElementById('news-container');
+        container.textContent = 'Не удалось загрузить новости.';
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
