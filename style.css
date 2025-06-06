@@ -6,7 +6,6 @@ body {
   background: linear-gradient(135deg, #2c1a0f, #4e2a0a);
   color: #f5e6c4;
   flex-direction: row;
-  /* Чтобы body занимал всю ширину и высоту */
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -61,7 +60,7 @@ nav.side-nav a.active {
   box-sizing: border-box;
   padding: 20px;
   margin-left: 20px;
-  max-width: calc(100vw - 220px); /* учитывая ширину меню и отступ */
+  max-width: calc(100vw - 220px);
   overflow-y: auto;
 }
 
@@ -77,51 +76,24 @@ nav.side-nav a.active {
   flex-direction: column;
 }
 
-/* Кнопки над футером */
-.button-group {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: auto; /* прижимает кнопки к низу main-content */
-  margin-bottom: 20px;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
+/* Новости - стилизация */
+.news-item {
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(255, 140, 0, 0.4);
 }
 
-/* Стиль кнопок */
-.main-button {
-  background: linear-gradient(135deg, #ff8c00, #ffa733);
-  color: #3b1f00;
-  font-weight: bold;
-  padding: 14px 28px;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.6);
-  transition: background 0.3s, box-shadow 0.3s;
-  user-select: none;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  white-space: nowrap;
+.news-date {
+  font-size: 1.1em;
+  color: #ffb84d;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 4px #ffb84d;
 }
 
-.main-button:hover,
-.main-button:focus {
-  background: linear-gradient(135deg, #ffa733, #ffb84d);
-  box-shadow: 0 6px 15px rgba(255, 183, 77, 0.8);
-  outline: none;
-}
-
-/* Стилизация IP */
-.server-ip {
-  font-size: 1.8em;
-  font-weight: 900;
-  color: #ff8c00;
-  text-shadow: 0 0 12px #ff8c00;
-  margin-top: 0;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-  user-select: all;
+.news-item p {
+  white-space: pre-wrap;
+  color: #f5e6c4;
+  text-shadow: 0 0 2px #a65a00;
 }
 
 /* Футер с линией сверху */
@@ -134,28 +106,6 @@ footer {
   margin: 0 0 20px 0;
   text-shadow: 0 0 3px #ff8c00;
   flex-shrink: 0;
-}
-
-/* Заголовки разделов правил с линией сверху */
-.rules-section-title {
-  position: relative;
-  padding-top: 15px;
-  margin-top: 30px;
-  font-weight: bold;
-  font-size: 1.3em;
-  color: #ffb84d;
-  text-shadow: 0 0 4px #ffb84d;
-}
-
-.rules-section-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 140, 0, 0.4);
-  border-radius: 2px;
 }
 
 /* Адаптив */
@@ -185,9 +135,6 @@ footer {
   }
   .main-content {
     margin-bottom: 20px;
-  }
-  .button-group {
-    flex-wrap: wrap;
   }
   footer {
     margin: 10px 15px 20px 15px;
