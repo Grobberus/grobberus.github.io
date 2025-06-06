@@ -76,16 +76,17 @@
 
           newsItem.appendChild(dateDiv);
 
-          const imgUrl = item.image || item.img || item.IMAGE;
-          if (imgUrl) {
-            const img = document.createElement('img');
-            img.src = imgUrl;
-            img.alt = 'Изображение новости';
-            img.style.maxWidth = '100%';
-            img.style.borderRadius = '8px';
-            img.style.margin = '10px 0';
-            newsItem.appendChild(img);
-          }
+			const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
+			const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+			if (imgUrls.length > 0) {
+			  imgUrls.forEach(imgUrl => {
+				const img = document.createElement('img');
+				img.src = imgUrl;
+				img.alt = 'Изображение новости';
+				newsItem.appendChild(img);
+			  });
+			}
 
           const textP = document.createElement('p');
           textP.className = 'news-text';
