@@ -6,50 +6,7 @@
   <title>Новости сервера - Модовый сервер Minecraft</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="icon.png" type="image/png" />
-  <style>
-    /* Контейнер на всю ширину, как в rules */
-    .content-wrapper {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #2a1a00;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #ff8c00;
-      box-sizing: border-box;
-    }
-    .main-content {
-      font-family: Georgia, serif;
-      color: #f5e6c4;
-    }
-    .main-content h1 {
-      margin-bottom: 20px;
-      color: #ff8c00;
-      text-shadow: 0 0 5px #ffb84d;
-    }
-    .news-item {
-      background: rgba(60,30,10,0.9);
-      padding: 20px 30px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #ff8c00;
-      line-height: 1.5em;
-      white-space: pre-wrap; /* переносы строк сохраняются */
-      word-wrap: break-word; /* перенос длинных слов */
-      overflow-wrap: break-word;
-      /* высота подстраивается автоматически */
-    }
-    .news-date {
-      font-weight: bold;
-      font-size: 1.1em;
-      margin-bottom: 10px;
-      text-shadow: 0 0 5px #ffb84d;
-    }
-    nav.side-nav a.active {
-      background: #ff8c00;
-      color: #fff;
-    }
-  </style>
-  <!-- Подключаем PapaParse -->
+  <!-- Подключаем PapaParse для корректного парсинга CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
@@ -63,6 +20,12 @@
     <div class="main-content">
       <h1>Новости сервера</h1>
       <div id="news-container">Загрузка новостей...</div>
+
+      <hr class="footer-separator" />
+
+      <footer>
+        <p>© Любители приключений, 2025</p>
+      </footer>
     </div>
   </div>
 
@@ -88,7 +51,6 @@
         if (!response.ok) throw new Error('Ошибка загрузки CSV');
         const csvText = await response.text();
 
-        // Парсим CSV с помощью PapaParse
         const parsed = Papa.parse(csvText, {
           header: true,
           skipEmptyLines: true,
@@ -103,11 +65,21 @@
 
         container.innerHTML = '';
         news.reverse().forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'news-item';
-          div.innerHTML = `<div class="news-date">${formatDate(item.date || item.Date || item.DATE)}</div>
-                           <div class="news-text">${(item.text || item.Text || item.TEXT || '').replace(/\n/g, '<br>')}</div>`;
-          container.appendChild(div);
+          const newsItem = document.createElement('div');
+          newsItem.className = 'news-item';
+
+          const dateDiv = document.createElement('div');
+          dateDiv.className = 'news-date';
+          dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
+
+          const textP = document.createElement('p');
+          textP.className = 'news-text';
+          // Заменяем переносы строк на <br> для корректного отображения
+          textP.innerHTML = (item.text || item.Text || item.TEXT || '').replace(/\n/g, '<br>');
+
+          newsItem.appendChild(dateDiv);
+          newsItem.appendChild(textP);
+          container.appendChild(newsItem);
         });
       } catch (e) {
         container.textContent = 'Не удалось загрузить новости.';
