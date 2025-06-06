@@ -49,6 +49,8 @@
       color: #fff;
     }
   </style>
+  <!-- Подключаем PapaParse -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
   <nav class="side-nav">
@@ -66,20 +68,6 @@
 
   <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
-
-    function parseCSV(text) {
-      const lines = text.trim().split('\n');
-      const headers = lines[0].split(',');
-      const data = lines.slice(1).map(line => {
-        const values = line.split(',');
-        let obj = {};
-        headers.forEach((header, i) => {
-          obj[header.trim()] = values[i] ? values[i].trim() : '';
-        });
-        return obj;
-      });
-      return data;
-    }
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
@@ -99,7 +87,14 @@
         const response = await fetch(CSV_URL);
         if (!response.ok) throw new Error('Ошибка загрузки CSV');
         const csvText = await response.text();
-        const news = parseCSV(csvText);
+
+        // Парсим CSV с помощью PapaParse
+        const parsed = Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+        });
+
+        const news = parsed.data;
 
         if (news.length === 0) {
           container.textContent = 'Новостей пока нет.';
