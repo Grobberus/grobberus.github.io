@@ -225,3 +225,45 @@ footer {
     margin: 10px 15px 20px 15px;
   }
 }
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  background-color: #3c1e0a;
+  box-sizing: border-box;
+}
+
+.side-nav a {
+  color: #f5e6c4;
+  text-decoration: none;
+  margin-bottom: 12px;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.side-nav a.active,
+.side-nav a:hover {
+  background-color: #ff8c00;
+  color: #3b1f00;
+}
+
+.side-nav-admin-button {
+  margin-top: auto; /* отодвинет кнопку вниз */
+  background-color: #ff8c00;
+  color: #3b1f00;
+  font-weight: 700;
+  padding: 12px 15px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.side-nav-admin-button:hover {
+  background-color: #ffa733;
+}
