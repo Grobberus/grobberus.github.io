@@ -8,6 +8,45 @@ body {
   color: #f5e6c4; /* тёплый светлый цвет текста */
 }
 
+.sidebar-nav {
+  display: flex;
+  flex-direction: column; /* вертикальный столбик */
+  background-color: #4e2a0a;
+  padding: 15px;
+  border-radius: 12px;
+  width: 150px; /* можно подкорректировать */
+}
+
+.nav-button {
+  display: block;
+  padding: 12px 20px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #ff8c00; /* яркий оранжевый */
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: rgba(255, 140, 0, 0.15);
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 140, 0, 0.35);
+  color: #fff3d1;
+}
+
+/* Кнопка "Главная" — без подчёркивания, цвет такой же яркий */
+.home-button {
+  text-decoration: none;
+  color: #ff8c00;
+}
+
+/* Кнопка "Правила" — чуть менее яркий цвет, с подчёркиванием */
+.rules-button {
+  color: #cc7a00; /* чуть темнее и менее яркий */
+  text-decoration: underline;
+}
+
 .main-content {
   flex: 1 1 600px;
   padding: 30px 40px;
