@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Новости сервера - Модовый сервер Minecraft</title>
+  <title>Новости сервера Minecraft</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="icon.png" type="image/png" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    h1 { color: #333; }
+    .news-item { margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    .news-date { font-weight: bold; margin-bottom: 8px; color: #555; }
+  </style>
 </head>
 <body>
   <nav class="side-nav">
@@ -15,54 +21,70 @@
   </nav>
 
   <div class="content-wrapper">
-    <div class="main-content">
-      <h1>Новости сервера</h1>
-      <div id="news-container"></div>
-
-      <hr class="footer-separator" />
-
-      <footer>
-        <p>© Любители приключений, 2025</p>
-      </footer>
-    </div>
+    <h1>Новости сервера Minecraft</h1>
+    <div id="news-container">Загрузка новостей...</div>
   </div>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbySi2ZhbQZgJdYKeWUQWr8n80n4r2u_AumtYnH6QIX9GNJH32cSoDd8gSNnO98Lm-U4Uw/exec';
+    // Ссылка на CSV-выгрузку вашего опубликованного листа
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 
-    function loadNews() {
-      fetch(API_URL)
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById('news-container');
-          container.innerHTML = '';
-          if (!Array.isArray(data) || data.length === 0) {
-            container.textContent = 'Новостей пока нет.';
-            return;
-          }
-          data.forEach(item => {
-            const newsItem = document.createElement('div');
-            newsItem.className = 'news-item';
-
-            const dateDiv = document.createElement('div');
-            dateDiv.className = 'news-date';
-            dateDiv.textContent = item.date;
-
-            const textP = document.createElement('p');
-            textP.className = 'news-text';
-            textP.textContent = item.text;
-
-            newsItem.appendChild(dateDiv);
-            newsItem.appendChild(textP);
-            container.appendChild(newsItem);
-          });
-        })
-        .catch(() => {
-          document.getElementById('news-container').textContent = 'Ошибка загрузки новостей.';
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',');
+      const data = lines.slice(1).map(line => {
+        const values = line.split(',');
+        let obj = {};
+        headers.forEach((header, i) => {
+          obj[header.trim()] = values[i] ? values[i].trim() : '';
         });
+        return obj;
+      });
+      return data;
     }
 
-    document.addEventListener('DOMContentLoaded', loadNews);
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      // Пробуем преобразовать в формат ДД.ММ.ГГГГ
+      const date = new Date(dateStr);
+      if (isNaN(date)) return dateStr;
+      const d = ('0' + date.getDate()).slice(-2);
+      const m = ('0' + (date.getMonth() + 1)).slice(-2);
+      const y = date.getFullYear();
+      return `${d}.${m}.${y}`;
+    }
+
+    async function loadNews() {
+      const container = document.getElementById('news-container');
+      container.textContent = 'Загрузка новостей...';
+
+      try {
+        const response = await fetch(CSV_URL);
+        if (!response.ok) throw new Error('Ошибка загрузки CSV');
+        const csvText = await response.text();
+        const news = parseCSV(csvText);
+
+        if (news.length === 0) {
+          container.textContent = 'Новостей пока нет.';
+          return;
+        }
+
+        container.innerHTML = '';
+        // Отобразим новости в обратном порядке (свежие сверху)
+        news.reverse().forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'news-item';
+          div.innerHTML = `<div class="news-date">${formatDate(item.date || item.Date || item.DATE)}</div>
+                           <div class="news-text">${(item.text || item.Text || item.TEXT || '').replace(/\n/g, '<br>')}</div>`;
+          container.appendChild(div);
+        });
+      } catch (e) {
+        container.textContent = 'Не удалось загрузить новости.';
+        console.error(e);
+      }
+    }
+
+    loadNews();
   </script>
 </body>
 </html>
