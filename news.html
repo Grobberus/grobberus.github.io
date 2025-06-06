@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Новости сервера - Модовый сервер Minecraft</title>
+  <title>Новости сервера</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="icon.png" type="image/png" />
   <!-- Подключаем PapaParse для корректного парсинга CSV -->
@@ -47,7 +47,9 @@
       container.textContent = 'Загрузка новостей...';
 
       try {
-        const response = await fetch(CSV_URL);
+        // Добавляем параметр для отключения кэша
+        const url = CSV_URL + '&_=' + new Date().getTime();
+        const response = await fetch(url, { cache: 'no-store' });
         if (!response.ok) throw new Error('Ошибка загрузки CSV');
         const csvText = await response.text();
 
@@ -103,6 +105,8 @@
     }
 
     loadNews();
+    // Опционально: обновлять новости каждые 30 секунд
+    setInterval(loadNews, 30000);
   </script>
 </body>
 </html>
