@@ -3,33 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <title>Модовый сервер Minecraft</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Левая колонка - основное содержимое */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Правая колонка - новости */
+    .news-column {
+      width: 320px;
+      background-color: #f9f9f9;
+      border-left: 1px solid #ccc;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+
+    .news-column h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+    }
+
+    /* Стили для новостей */
+    .news-item {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .news-date {
+      font-size: 0.85em;
+      color: #666;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    /* Ссылка на скачивание */
+    a.download-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    a.download-link:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+      color: #555;
+      border-top: 1px solid #ccc;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Добро пожаловать на наш модовый сервер Minecraft!</h1>
-  <h2>Любители приключений</h2>
-  <p>Уникальный модовый сервер с квестами и приключениями.</p>
+  <div class="main-content">
+    <h1>Добро пожаловать на наш модовый сервер Minecraft!</h1>
+    <h2>Любители приключений</h2>
+    <p>Уникальный модовый сервер с квестами и приключениями.</p>
 
-  <h3>IP сервера:</h3>
-  <p><b>62.60.230.20</b></p>
+    <h3>IP сервера:</h3>
+    <p><b>62.60.230.20</b></p>
 
-  <h3>Новости сервера:</h3>
-  <ul>
-    <li>Мы стали SMP - поздравляю игроков со сменой типа сервера. Мы переходим и утверждаем роолевой формат сервера. Вы не только можете изучать мода, но и также ролить с другими участниками, фиксировать это. Мы не сможем как в текстовых РП отслеживать Ваш ролевой процесс полностью. Здесь Вас регулируют правила и собственная совесть. </li>
-    <li>Иконка сервера - изменена иконка сервера. Теперь в строке сетевой игры наш сервер выделяется костром.</li>
-    <li>Новые ивенты - Вас ожидают новые ивенты, торговцы и прочее. Все почти готова для интересных отыгрышей и приключений. </li>
-  </ul>
+    <h3>Скачать моды</h3>
+    <p>
+      <a href="https://drive.google.com/file/d/1sADPdzai2lmplPwnc7rLXcC2Fu89xGu0/view?usp=drive_link" 
+         target="_blank" rel="noopener noreferrer" class="download-link">
+        Скачать папку модов с Google Диска
+      </a>
+    </p>
 
-  <h3>Скачать моды</h3>
-  <p>
-    <a href="https://drive.google.com/file/d/1sADPdzai2lmplPwnc7rLXcC2Fu89xGu0/view?usp=drive_link" 
-       target="_blank" rel="noopener noreferrer">
-      Скачать папку модов с Google Диска
-    </a>
-  </p>
+    <footer>
+      <p>© Любители приключений, 2025</p>
+    </footer>
+  </div>
 
-  <footer>
-    <hr>
-    <p>© Любители приключений 2025</p>
-  </footer>
+  <aside class="news-column">
+    <h3>Новости сервера</h3>
+
+    <div class="news-item">
+      <div class="news-date">2025-06-01</div>
+      <p>Мы стали SMP - поздравляю игроков со сменой типа сервера. Мы переходим и утверждаем роолевой формат сервера. Вы не только можете изучать мода, но и также ролить с другими участниками, фиксировать это. Мы не сможем как в текстовых РП отслеживать Ваш ролевой процесс полностью. Здесь Вас регулируют правила и собственная совесть.</p>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025-05-25</div>
+      <p>Иконка сервера - изменена иконка сервера. Теперь в строке сетевой игры наш сервер выделяется костром.</p>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025-05-10</div>
+      <p>Новые ивенты - Вас ожидают новые ивенты, торговцы и прочее. Все почти готова для интересных отыгрышей и приключений.</p>
+    </div>
+  </aside>
 </body>
 </html>
