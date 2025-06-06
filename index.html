@@ -1,39 +1,39 @@
-// Функция форматирования даты из "YYYY-MM-DD" в "DD.MM.YYYY"
-function formatDate(dateStr) {
-  const parts = dateStr.split('-');
-  if(parts.length !== 3) return dateStr;
-  return `${parts[2]}.${parts[1]}.${parts[0]}`;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Модовый сервер Minecraft</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <h1>Добро пожаловать на наш модовый сервер Minecraft!</h1>
+    <h2>Любители приключений</h2>
+    <p>Уникальный модовый сервер с квестами и приключениями.</p>
 
-// Загружаем новости из news.json и отображаем в обратном порядке
-fetch('news.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Ошибка загрузки новостей');
-    }
-    return response.json();
-  })
-  .then(newsData => {
-    const container = document.getElementById('news-container');
-    newsData.reverse().forEach(item => {
-      const newsItem = document.createElement('div');
-      newsItem.className = 'news-item';
+    <h3>IP сервера:</h3>
+    <p><b>62.60.230.20</b></p>
 
-      const dateElem = document.createElement('div');
-      dateElem.className = 'news-date';
-      dateElem.textContent = formatDate(item.date);
+    <h3>Скачать моды</h3>
+    <p>
+      <a href="https://drive.google.com/file/d/1sADPdzai2lmplPwnc7rLXcC2Fu89xGu0/view?usp=drive_link" 
+         target="_blank" rel="noopener noreferrer" class="download-link">
+        Скачать папку модов с Google Диска
+      </a>
+    </p>
 
-      const textElem = document.createElement('p');
-      textElem.textContent = item.text;
+    <footer>
+      <p>© Любители приключений, 2025</p>
+    </footer>
+  </div>
 
-      newsItem.appendChild(dateElem);
-      newsItem.appendChild(textElem);
+  <aside class="news-column">
+    <h3>Новости сервера</h3>
+    <div id="news-container">
+      <!-- Новости подгрузятся сюда -->
+    </div>
+  </aside>
 
-      container.appendChild(newsItem);
-    });
-  })
-  .catch(error => {
-    const container = document.getElementById('news-container');
-    container.textContent = 'Не удалось загрузить новости.';
-    console.error(error);
-  });
+  <script src="script.js"></script>
+</body>
+</html>
