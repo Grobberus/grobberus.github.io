@@ -54,10 +54,8 @@ nav.side-nav a.active {
   border-radius: 12px;
   margin: 20px;
   line-height: 1.6;
-  max-width: 900px;
 }
 
-/* Сброс старых стилей горизонтального меню */
 nav.top-nav {
   display: none;
 }
