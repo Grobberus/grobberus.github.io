@@ -72,12 +72,23 @@
           dateDiv.className = 'news-date';
           dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
 
+          newsItem.appendChild(dateDiv);
+
+          const imgUrl = item.image || item.img || item.IMAGE;
+          if (imgUrl) {
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            img.alt = 'Изображение новости';
+            img.style.maxWidth = '100%';
+            img.style.borderRadius = '8px';
+            img.style.margin = '10px 0';
+            newsItem.appendChild(img);
+          }
+
           const textP = document.createElement('p');
           textP.className = 'news-text';
-          // Заменяем переносы строк на <br> для корректного отображения
           textP.innerHTML = (item.text || item.Text || item.TEXT || '').replace(/\n/g, '<br>');
 
-          newsItem.appendChild(dateDiv);
           newsItem.appendChild(textP);
           container.appendChild(newsItem);
         });
