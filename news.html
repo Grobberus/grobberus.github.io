@@ -3,14 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Новости сервера Minecraft</title>
+  <title>Новости сервера - Модовый сервер Minecraft</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="icon.png" type="image/png" />
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-    h1 { color: #333; }
-    .news-item { margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
-    .news-date { font-weight: bold; margin-bottom: 8px; color: #555; }
+    /* Дополнительные стили для новостей */
+    .main-content h1 {
+      margin-bottom: 20px;
+      color: #ff8c00;
+      text-shadow: 0 0 5px #ffb84d;
+    }
+    .news-item {
+      background: rgba(60,30,10,0.9);
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff8c00;
+      color: #f5e6c4;
+      font-family: Georgia, serif;
+      line-height: 1.5em;
+      white-space: pre-wrap; /* сохранять переносы строк */
+    }
+    .news-date {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #ffb84d;
+    }
+    .content-wrapper {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #2a1a00;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff8c00;
+    }
   </style>
 </head>
 <body>
@@ -21,12 +48,13 @@
   </nav>
 
   <div class="content-wrapper">
-    <h1>Новости сервера Minecraft</h1>
-    <div id="news-container">Загрузка новостей...</div>
+    <div class="main-content">
+      <h1>Новости сервера</h1>
+      <div id="news-container">Загрузка новостей...</div>
+    </div>
   </div>
 
   <script>
-    // Ссылка на CSV-выгрузку вашего опубликованного листа
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 
     function parseCSV(text) {
@@ -45,7 +73,6 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      // Пробуем преобразовать в формат ДД.ММ.ГГГГ
       const date = new Date(dateStr);
       if (isNaN(date)) return dateStr;
       const d = ('0' + date.getDate()).slice(-2);
@@ -70,7 +97,6 @@
         }
 
         container.innerHTML = '';
-        // Отобразим новости в обратном порядке (свежие сверху)
         news.reverse().forEach(item => {
           const div = document.createElement('div');
           div.className = 'news-item';
