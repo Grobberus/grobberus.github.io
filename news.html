@@ -87,7 +87,11 @@
 
           const textP = document.createElement('p');
           textP.className = 'news-text';
-          textP.innerHTML = (item.text || item.Text || item.TEXT || '').replace(/\n/g, '<br>');
+
+          // Убираем лишние пустые строки, заменяем множественные переносы на одинарные
+          let rawText = item.text || item.Text || item.TEXT || '';
+          rawText = rawText.replace(/\n{2,}/g, '\n');
+          textP.innerHTML = rawText.replace(/\n/g, '<br>');
 
           newsItem.appendChild(textP);
           container.appendChild(newsItem);
