@@ -27,6 +27,42 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbySi2ZhbQZgJdYKeWUQWr8n80n4r2u_AumtYnH6QIX9GNJH32cSoDd8gSNnO98Lm-U4Uw/exec';
+
+    function loadNews() {
+      fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById('news-container');
+          container.innerHTML = '';
+          if (!Array.isArray(data) || data.length === 0) {
+            container.textContent = 'Новостей пока нет.';
+            return;
+          }
+          data.forEach(item => {
+            const newsItem = document.createElement('div');
+            newsItem.className = 'news-item';
+
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'news-date';
+            dateDiv.textContent = item.date;
+
+            const textP = document.createElement('p');
+            textP.className = 'news-text';
+            textP.textContent = item.text;
+
+            newsItem.appendChild(dateDiv);
+            newsItem.appendChild(textP);
+            container.appendChild(newsItem);
+          });
+        })
+        .catch(() => {
+          document.getElementById('news-container').textContent = 'Ошибка загрузки новостей.';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadNews);
+  </script>
 </body>
 </html>

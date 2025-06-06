@@ -3,35 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Добавление новости - Защищённая админка</title>
+  <title>Вход в админку - Добавление новости</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="icon.png" type="image/png" />
   <style>
-    body {
-      background: #2c1a0f;
-      color: #f5e6c4;
-      font-family: Georgia, serif;
-      margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
     .container {
+      max-width: 500px;
+      margin: 40px auto;
       background: rgba(60,30,10,0.9);
       padding: 30px 40px;
       border-radius: 12px;
       box-shadow: 0 0 20px #ff8c00;
-      max-width: 450px;
-      width: 100%;
-    }
-    h1 {
-      margin-top: 0;
-      text-align: center;
-      text-shadow: 0 0 6px #ffb84d;
+      color: #f5e6c4;
+      font-family: Georgia, serif;
     }
     label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: bold;
-      font-size: 1.1em;
     }
     input[type="password"],
     input[type="date"],
@@ -45,6 +34,7 @@
       margin-bottom: 20px;
       box-sizing: border-box;
       resize: vertical;
+      color: #3b1f00;
     }
     textarea {
       height: 120px;
@@ -57,9 +47,9 @@
       border-radius: 12px;
       border: none;
       cursor: pointer;
-      width: 100%;
       font-size: 1.1em;
       box-shadow: 0 4px 10px rgba(255,140,0,0.6);
+      width: 100%;
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     button:hover {
@@ -78,61 +68,60 @@
 <body>
   <div class="container">
     <h1>Добавить новость</h1>
-    <label for="adminCode">Код администратора:</label>
-    <input type="password" id="adminCode" placeholder="Введите код доступа" autocomplete="off" />
+    <form id="addNewsForm">
+      <label for="adminCode">Код администратора:</label>
+      <input type="password" id="adminCode" placeholder="Введите код доступа" autocomplete="off" required />
 
-    <label for="newsDate">Дата новости:</label>
-    <input type="date" id="newsDate" />
+      <label for="newsDate">Дата новости:</label>
+      <input type="date" id="newsDate" required />
 
-    <label for="newsText">Текст новости:</label>
-    <textarea id="newsText" placeholder="Введите текст новости"></textarea>
+      <label for="newsText">Текст новости:</label>
+      <textarea id="newsText" placeholder="Введите текст новости" required></textarea>
 
-    <button id="publishBtn">Опубликовать</button>
-
-    <div id="message"></div>
+      <button type="submit">Опубликовать</button>
+      <div id="message"></div>
+    </form>
   </div>
 
   <script>
-    const ACCESS_CODE = 'секретный_код_доступа'; // Замените на ваш реальный код
+    const API_URL = 'https://script.google.com/macros/s/AKfycbySi2ZhbQZgJdYKeWUQWr8n80n4r2u_AumtYnH6QIX9GNJH32cSoDd8gSNnO98Lm-U4Uw/exec';
 
-    const adminCodeInput = document.getElementById('adminCode');
-    const newsDateInput = document.getElementById('newsDate');
-    const newsTextInput = document.getElementById('newsText');
-    const publishBtn = document.getElementById('publishBtn');
+    const form = document.getElementById('addNewsForm');
     const messageDiv = document.getElementById('message');
 
-    publishBtn.addEventListener('click', () => {
-      const code = adminCodeInput.value.trim();
-      const date = newsDateInput.value.trim();
-      const text = newsTextInput.value.trim();
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      messageDiv.textContent = '';
+      const code = document.getElementById('adminCode').value.trim();
+      const date = document.getElementById('newsDate').value;
+      const text = document.getElementById('newsText').value.trim();
 
-      if (code !== ACCESS_CODE) {
+      if (!code || !date || !text) {
         messageDiv.style.color = '#ff4d4d';
-        messageDiv.textContent = 'Неподходящий код администратора';
-        return;
-      }
-      if (!date) {
-        messageDiv.style.color = '#ff4d4d';
-        messageDiv.textContent = 'Пожалуйста, укажите дату новости';
-        return;
-      }
-      if (!text) {
-        messageDiv.style.color = '#ff4d4d';
-        messageDiv.textContent = 'Пожалуйста, введите текст новости';
+        messageDiv.textContent = 'Пожалуйста, заполните все поля.';
         return;
       }
 
-      // Здесь должна быть отправка новости на сервер
-      // Пример: fetch('/api/add-news', { method: 'POST', body: JSON.stringify({date, text}), headers: {...} })
-
-      // Для демонстрации просто выводим сообщение об успехе
-      messageDiv.style.color = '#b3ff66';
-      messageDiv.textContent = 'Новость опубликована.';
-
-      // Очистка формы
-      adminCodeInput.value = '';
-      newsDateInput.value = '';
-      newsTextInput.value = '';
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, date, text })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            messageDiv.style.color = '#b3ff66';
+            messageDiv.textContent = 'Новость опубликована.';
+            form.reset();
+          } else {
+            messageDiv.style.color = '#ff4d4d';
+            messageDiv.textContent = data.message || 'Ошибка при публикации новости.';
+          }
+        })
+        .catch(() => {
+          messageDiv.style.color = '#ff4d4d';
+          messageDiv.textContent = 'Ошибка соединения с сервером.';
+        });
     });
   </script>
 </body>
