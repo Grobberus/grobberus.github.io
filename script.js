@@ -34,7 +34,6 @@ fetch('news.json?v=' + new Date().getTime()) // добавлен парамет�
     container.appendChild(newsItem);
   });
 })
-
   .catch(error => {
     const container = document.getElementById('news-container');
     container.textContent = 'Не удалось загрузить новости.';
