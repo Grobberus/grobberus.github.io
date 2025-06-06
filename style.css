@@ -76,16 +76,16 @@ nav.side-nav a.active {
   flex-direction: column;
 }
 
-/* Контейнер кнопок */
+/* Кнопки на главной странице */
 .button-group {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin-top: auto; /* прижимает кнопки к низу main-content */
+  margin-top: auto;
   margin-bottom: 10px;
   flex-wrap: nowrap;
   flex-shrink: 0;
-  border-top: 2px solid rgba(255, 140, 0, 0.4); /* разделитель над кнопками */
+  border-top: 2px solid rgba(255, 140, 0, 0.4);
   padding-top: 15px;
 }
 
@@ -125,14 +125,34 @@ nav.side-nav a.active {
   user-select: all;
 }
 
+/* Новости */
+.news-item {
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(255, 140, 0, 0.4);
+}
+
+.news-date {
+  font-size: 1.1em;
+  color: #ffb84d;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 4px #ffb84d;
+}
+
+.news-item p {
+  white-space: pre-wrap;
+  color: #f5e6c4;
+  text-shadow: 0 0 2px #a65a00;
+}
+
 /* Футер */
 footer {
   text-align: center;
   padding: 20px 10px;
   font-size: 0.9em;
   color: #d9c9a3;
-  border-top: 2px solid rgba(255, 140, 0, 0.6); /* разделитель над футером */
-  margin: 0 0 20px 0;
+  border-top: 2px solid rgba(255, 140, 0, 0.6);
+  margin: 20px 0 0 0;
   text-shadow: 0 0 3px #ff8c00;
   flex-shrink: 0;
 }
