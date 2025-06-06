@@ -278,3 +278,23 @@ footer {
   margin: 10px 0;         /* Отступы сверху и снизу */
   object-fit: contain;    /* Сохраняет пропорции при обрезке */
 }
+
+.news-images-wrapper {
+  display: flex;
+  gap: 10px;          /* Расстояние между картинками */
+  flex-wrap: wrap;    /* Если картинок много — переход на новую строку */
+  margin: 10px 0;     /* Отступы сверху и снизу */
+}
+
+.news-images-wrapper img {
+  max-width: 300px;       /* Максимальная ширина картинки */
+  max-height: 200px;      /* Максимальная высота картинки */
+  width: auto;
+  height: auto;
+  border: 2px solid #ff8c00;
+  border-radius: 8px;
+  padding: 4px;
+  box-sizing: border-box;
+  object-fit: contain;
+  display: block;
+}

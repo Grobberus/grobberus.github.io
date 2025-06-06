@@ -8,6 +8,30 @@
   <link rel="icon" href="icon.png" type="image/png" />
   <!-- Подключаем PapaParse для корректного парсинга CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    /* Добавляем стили для обёртки картинок */
+    .news-images-wrapper {
+      display: flex;
+      gap: 10px;          /* Расстояние между картинками */
+      flex-wrap: wrap;    /* Перенос на новую строку при необходимости */
+      margin: 10px 0;     /* Отступы сверху и снизу */
+    }
+
+    .news-images-wrapper img {
+      max-width: 300px;       /* Максимальная ширина картинки */
+      max-height: 200px;      /* Максимальная высота картинки */
+      width: auto;
+      height: auto;
+      border: 2px solid #ff8c00; /* Оранжевая рамка */
+      border-radius: 8px;
+      padding: 4px;
+      box-sizing: border-box;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Остальной ваш CSS можно оставить без изменений */
+  </style>
 </head>
 <body>
   <nav class="side-nav">
@@ -76,17 +100,22 @@
 
           newsItem.appendChild(dateDiv);
 
-			const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
-			const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+          const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
+          const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
 
-			if (imgUrls.length > 0) {
-			  imgUrls.forEach(imgUrl => {
-				const img = document.createElement('img');
-				img.src = imgUrl;
-				img.alt = 'Изображение новости';
-				newsItem.appendChild(img);
-			  });
-			}
+          if (imgUrls.length > 0) {
+            const imagesWrapper = document.createElement('div');
+            imagesWrapper.className = 'news-images-wrapper';
+
+            imgUrls.forEach(imgUrl => {
+              const img = document.createElement('img');
+              img.src = imgUrl;
+              img.alt = 'Изображение новости';
+              imagesWrapper.appendChild(img);
+            });
+
+            newsItem.appendChild(imagesWrapper);
+          }
 
           const textP = document.createElement('p');
           textP.className = 'news-text';
