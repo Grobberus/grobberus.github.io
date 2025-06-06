@@ -1,13 +1,78 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c1a0f, #4e2a0a);
+  color: #f5e6c4;
+}
+
+/* Вертикальное меню слева */
+nav.side-nav {
+  display: flex;
+  flex-direction: column;
+  background-color: #4e2a0a;
+  padding: 20px;
+  border-radius: 0 12px 12px 0;
+  width: 180px;
+  box-shadow: 2px 0 10px rgba(255, 140, 0, 0.4);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+nav.side-nav a {
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ff8c00;
+  background-color: rgba(255, 140, 0, 0.15);
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+nav.side-nav a:hover {
+  background-color: rgba(255, 140, 0, 0.35);
+  color: #fff3d1;
+}
+
+nav.side-nav a.active {
+  color: #cc7a00;
+  text-decoration: underline;
+  background-color: rgba(204, 122, 0, 0.25);
+  box-shadow: 0 0 10px rgba(204, 122, 0, 0.5);
+}
+
+/* Основной контент с flex-контейнером для правильного расположения кнопок и футера */
+.main-content {
+  flex: 1;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  background: rgba(60, 30, 10, 0.85);
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+  border-radius: 12px;
+  margin: 20px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 40px);
+}
+
+/* Контейнер для кнопок — располагается над футером */
 .button-group {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin: 20px 0 0 0;
+  margin-top: auto; /* Выталкивает кнопки вниз перед футером */
+  margin-bottom: 20px;
   flex-wrap: nowrap;
   flex-shrink: 0;
-  /* Кнопки располагаются в строку */
 }
 
+/* Стиль кнопок */
 .main-button {
   background: linear-gradient(135deg, #ff8c00, #ffa733);
   color: #3b1f00;
@@ -21,7 +86,7 @@
   display: inline-block;
   text-align: center;
   cursor: pointer;
-  white-space: nowrap; /* чтобы кнопки не переносились */
+  white-space: nowrap;
 }
 
 .main-button:hover,
@@ -31,18 +96,64 @@
   outline: none;
 }
 
-/* Чтобы кнопки не сдвигали футер вниз */
+/* Новости */
+
+.news-item {
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(255, 140, 0, 0.4);
+}
+
+.news-date {
+  font-size: 1.1em; /* увеличенный размер */
+  color: #ffb84d;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 4px #ffb84d;
+}
+
+.news-item p {
+  white-space: pre-wrap;
+  color: #f5e6c4;
+  text-shadow: 0 0 2px #a65a00;
+}
+
+#news-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Ссылки с загрузками */
+a.download-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #ff8c00;
+  color: #3b1f00;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ff8c00;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+a.download-link:hover {
+  background-color: #ffa733;
+  box-shadow: 0 0 15px #ffa733;
+}
+
+/* Футер */
 footer {
   text-align: center;
   padding: 20px 10px;
   font-size: 0.9em;
   color: #d9c9a3;
   border-top: 1px solid #ff8c00;
-  margin-top: 20px;
+  margin-top: 0; /* Убираем верхний отступ, чтобы кнопки были над футером */
   text-shadow: 0 0 3px #ff8c00;
 }
 
-/* Линия над заголовками разделов правил */
+/* Заголовки разделов правил с линией сверху */
 .rules-section-title {
   position: relative;
   padding-top: 15px;
@@ -64,3 +175,34 @@ footer {
   border-radius: 2px;
 }
 
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  nav.side-nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 2px 10px rgba(255, 140, 0, 0.4);
+    padding: 10px 0;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+  }
+  nav.side-nav a {
+    margin-bottom: 0;
+    padding: 10px 15px;
+  }
+  .main-content {
+    margin: 10px 15px;
+    max-width: 100%;
+    border-radius: 12px;
+    min-height: auto;
+  }
+  .button-group {
+    flex-wrap: wrap;
+  }
+}
