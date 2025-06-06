@@ -115,7 +115,7 @@
       })
       .then(newsData => {
         const container = document.getElementById('news-container');
-        newsData.forEach(item => {
+         newsData.reverse().forEach(item => {
           const newsItem = document.createElement('div');
           newsItem.className = 'news-item';
 
