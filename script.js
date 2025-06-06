@@ -13,26 +13,28 @@ fetch('news.json?v=' + new Date().getTime()) // добавлен парамет�
     }
     return response.json();
   })
-  .then(newsData => {
-    const container = document.getElementById('news-container');
-    container.innerHTML = ''; // очищаем контейнер перед добавлением новостей
-    newsData.reverse().forEach(item => {
-      const newsItem = document.createElement('div');
-      newsItem.className = 'news-item';
+.then(newsData => {
+  const container = document.getElementById('news-container');
+  container.innerHTML = ''; // очищаем контейнер перед добавлением новостей
+  newsData.reverse().forEach(item => {
+    const newsItem = document.createElement('div');
+    newsItem.className = 'news-item';
 
-      const dateElem = document.createElement('div');
-      dateElem.className = 'news-date';
-      dateElem.textContent = formatDate(item.date);
+    const dateElem = document.createElement('div');
+    dateElem.className = 'news-date';
+    dateElem.textContent = formatDate(item.date);
 
-      const textElem = document.createElement('p');
-      textElem.textContent = item.text;
+    const textElem = document.createElement('p');
+    // заменяем переносы строк на <br> для корректного отображения
+    textElem.innerHTML = item.text.replace(/\n/g, '<br>');
 
-      newsItem.appendChild(dateElem);
-      newsItem.appendChild(textElem);
+    newsItem.appendChild(dateElem);
+    newsItem.appendChild(textElem);
 
-      container.appendChild(newsItem);
-    });
-  })
+    container.appendChild(newsItem);
+  });
+})
+
   .catch(error => {
     const container = document.getElementById('news-container');
     container.textContent = 'Не удалось загрузить новости.';
