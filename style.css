@@ -3,10 +3,11 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   min-height: 100vh;
+  flex-wrap: wrap; /* чтобы на узких экранах колонки переносились */
 }
 
 .main-content {
-  flex: 1;
+  flex: 1 1 600px; /* минимальная ширина 600px */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -66,4 +67,23 @@ footer {
   color: #555;
   border-top: 1px solid #ccc;
   margin-top: 40px;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .news-column {
+    width: 100%;
+    max-height: none;
+    border-left: none;
+    border-top: 1px solid #ccc;
+    position: relative;
+    padding: 15px 20px;
+  }
+  .main-content {
+    flex: none;
+    width: 100%;
+  }
 }

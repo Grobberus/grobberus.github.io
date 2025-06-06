@@ -6,7 +6,7 @@ function formatDate(dateStr) {
 }
 
 // Загружаем новости из news.json и отображаем в обратном порядке
-fetch('news.json')
+fetch('news.json?v=' + new Date().getTime()) // добавлен параметр для обхода кеша
   .then(response => {
     if (!response.ok) {
       throw new Error('Ошибка загрузки новостей');
@@ -15,6 +15,7 @@ fetch('news.json')
   })
   .then(newsData => {
     const container = document.getElementById('news-container');
+    container.innerHTML = ''; // очищаем контейнер перед добавлением новостей
     newsData.reverse().forEach(item => {
       const newsItem = document.createElement('div');
       newsItem.className = 'news-item';
