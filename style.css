@@ -89,6 +89,15 @@ nav.side-nav a.active {
   padding-top: 15px;
 }
 
+/* Разделитель над футером */
+.footer-separator {
+  border: none;
+  border-top: 2px solid rgba(255, 140, 0, 0.4);
+  margin: 0 0 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Стилизация кнопок */
 .main-button {
   background: linear-gradient(135deg, #ff8c00, #ffa733);
@@ -151,10 +160,12 @@ footer {
   padding: 20px 10px;
   font-size: 0.9em;
   color: #d9c9a3;
-  border-top: 2px solid rgba(255, 140, 0, 0.6);
-  margin: 20px 0 0 0;
+  border-top: none;
+  margin: 0;
   text-shadow: 0 0 3px #ff8c00;
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Заголовки разделов правил с линией сверху */
