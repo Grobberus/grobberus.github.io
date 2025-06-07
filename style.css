@@ -78,13 +78,74 @@ nav.side-nav a.active {
   flex-direction: column;
 }
 
-/* Разделитель над футером */
-.footer-separator {
-  border: none;
-  border-top: 2px solid rgba(255, 140, 0, 0.4);
-  margin: 0 0 10px 0;
+/* Заголовки разделов правил */
+.rules-section-title {
+  position: relative;
+  padding-top: 15px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 1.3em;
+  color: #ffb84d;
+  text-shadow: 0 0 4px #ffb84d;
+}
+
+.rules-section-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  box-sizing: border-box;
+  height: 2px;
+  background-color: rgba(255, 140, 0, 0.4);
+  border-radius: 2px;
+}
+
+/* IP сервера (Главная) */
+.server-ip {
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #ff8c00;
+  text-shadow: 0 0 12px #ff8c00;
+  margin-top: 0;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  user-select: all;
+}
+
+/* Кнопки на главной */
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  border-top: 2px solid rgba(255, 140, 0, 0.4);
+  padding-top: 15px;
+}
+
+.main-button {
+  background: linear-gradient(135deg, #ff8c00, #ffa733);
+  color: #3b1f00;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.6);
+  transition: background 0.3s, box-shadow 0.3s;
+  user-select: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.main-button:hover,
+.main-button:focus {
+  background: linear-gradient(135deg, #ffa733, #ffb84d);
+  box-shadow: 0 6px 15px rgba(255, 183, 77, 0.8);
+  outline: none;
 }
 
 /* Новости */
