@@ -1,9 +1,20 @@
+// scripts.js
+
 // Функция форматирования даты из "YYYY-MM-DD" в "DD.MM.YYYY"
 function formatDate(dateStr) {
   if (!dateStr) return '';
   const parts = dateStr.split('-');
   if(parts.length !== 3) return dateStr;
   return `${parts[2]}.${parts[1]}.${parts[0]}`;
+}
+
+// Функция преобразования ссылки Google Drive в прямую ссылку для <img>
+function convertDriveLinkToDirect(url) {
+  const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+  if (match && match[1]) {
+    return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  }
+  return url; // если не совпало, возвращаем как есть
 }
 
 // Загружаем новости из news.json и отображаем в обратном порядке
@@ -41,8 +52,9 @@ fetch('news.json?v=' + new Date().getTime()) // параметр для обхо
           imagesWrapper.className = 'news-images-wrapper';
 
           imgUrls.forEach(imgUrl => {
+            const directUrl = convertDriveLinkToDirect(imgUrl);
             const img = document.createElement('img');
-            img.src = imgUrl;
+            img.src = directUrl;
             img.alt = 'Изображение новости';
             imagesWrapper.appendChild(img);
           });
