@@ -88,10 +88,10 @@ function loadMoreNews() {
 
     newsItem.appendChild(dateDiv);
 
-    // Разделитель после даты
+    // Только длинный разделитель после даты
     const divider = document.createElement('div');
     divider.className = 'news-divider';
-    divider.textContent = '----------';
+    divider.textContent = '─────────────────────────────';
     newsItem.appendChild(divider);
 
     const imgUrlsRaw = item.image || item.img || item.IMAGE || '';

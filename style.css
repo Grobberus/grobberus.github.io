@@ -25,9 +25,9 @@ nav.side-nav {
   align-items: center;
   justify-content: flex-start;
   background-color: #4e2a0a;
-  padding: 24px 0 24px 0;
-  border-radius: 0 16px 16px 0;
-  width: 210px;
+  padding: 28px 0 28px 0;
+  border-radius: 0 18px 18px 0;
+  width: 240px;
   box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
   position: sticky;
@@ -36,10 +36,9 @@ nav.side-nav {
   gap: 0;
 }
 
-/* --- Логотип сервера --- */
 .logo-wrapper {
   width: 80%;
-  margin: 0 auto 32px auto;
+  margin: 0 auto 36px auto;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -51,8 +50,8 @@ nav.side-nav {
   aspect-ratio: 1 / 1;
   height: auto;
   display: block;
-  border-radius: 16px;
-  box-shadow: 0 0 30px 0 #ffb84d, 0 0 0 0px rgba(255, 140, 0, 0.10) inset;
+  border-radius: 18px;
+  box-shadow: 0 0 30px 0 #ffb84d;
   border: none;
   background: #2c1a0f;
   object-fit: cover;
@@ -60,27 +59,27 @@ nav.side-nav {
 }
 
 .server-icon:hover {
-  box-shadow: 0 0 48px 8px #ffb84d, 0 0 0 0px rgba(255, 140, 0, 0.13) inset;
+  box-shadow: 0 0 60px 16px #ffb84d;
 }
 
 /* --- Кнопки меню --- */
 nav.side-nav a {
-  padding: 14px 24px;
-  margin-bottom: 18px;
+  padding: 15px 26px;
+  margin-bottom: 20px;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 12px;
   text-decoration: none;
   color: #ffb84d;
   background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
   box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
-  transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.2s;
+  transition: background 0.25s, color 0.25s, transform 0.13s, box-shadow 0.18s;
   cursor: pointer;
-  width: 94%;
-  max-width: 170px;
+  width: 98%;
+  max-width: 190px;
   box-sizing: border-box;
   text-align: center;
   outline: none;
-  border: 1.5px solid transparent;
+  border: none;
   font-size: 1.08em;
   letter-spacing: 0.03em;
   filter: drop-shadow(0 0 3px #ffb84d33);
@@ -94,9 +93,8 @@ nav.side-nav a:hover,
 nav.side-nav a:focus {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
-  transform: scale(1.045);
+  transform: scale(1.035);
   box-shadow: 0 4px 18px 2px #ffb84d55;
-  border-color: #ffb84d77;
   text-decoration: none;
 }
 
@@ -104,7 +102,6 @@ nav.side-nav a.active {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
   box-shadow: 0 4px 18px 2px #ffb84d55;
-  border-color: #ffb84d77;
   text-decoration: none;
 }
 
@@ -116,9 +113,9 @@ nav.side-nav a.active {
   flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 20px;
-  margin-left: 20px;
-  max-width: calc(100vw - 240px);
+  padding: 24px;
+  margin-left: 24px;
+  max-width: calc(100vw - 260px);
   overflow-y: auto;
 }
 
@@ -126,11 +123,11 @@ nav.side-nav a.active {
 
 .main-content {
   flex: 1;
-  background: rgba(60, 30, 10, 0.88);
+  background: rgba(60, 30, 10, 0.91);
   box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
   border: 1.5px solid rgba(255, 140, 0, 0.15);
-  border-radius: 20px;
-  padding: 32px 48px;
+  border-radius: 22px;
+  padding: 38px 54px;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -214,17 +211,17 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* === Новости (тёплый свиток, газетная текстура) === */
+/* === Новости (тёплый свиток, газетная текстура, гвоздики) === */
 
 .news-item {
-  background: linear-gradient(120deg, #fdf6e3 90%, #f5e6c4 100%);
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #fdf6e3 90%, #f5e6c4 100%);
+  background: linear-gradient(120deg, #f9e8c6 90%, #f5e6c4 100%);
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #f9e8c6 90%, #f5e6c4 100%);
   background-blend-mode: multiply;
   border: 2.5px solid #ffb84d33;
-  box-shadow: 4px 4px 16px rgba(0,0,0,0.10), 0 0 0 2px #e5d4b1 inset;
-  border-radius: 12px 12px 20px 20px / 10px 10px 20px 20px;
-  padding: 28px 38px 24px 38px;
-  margin-bottom: 32px;
+  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #e5d4b1 inset;
+  border-radius: 14px 14px 22px 22px / 12px 12px 22px 22px;
+  padding: 32px 44px 26px 44px;
+  margin-bottom: 36px;
   font-family: 'Georgia', serif;
   color: #5b4636;
   line-height: 1.7em;
@@ -239,18 +236,25 @@ nav.side-nav a.active {
   animation: fadeIn 0.7s ease forwards;
 }
 
-.news-item::before {
+/* --- Гвоздики (кнопки) в углах --- */
+.news-item::before,
+.news-item::after {
   content: "";
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 20px;
-  height: 20px;
-  background: #f5e6c4;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.10);
-  transform: rotate(45deg);
-  border-radius: 2px;
-  opacity: 0.14;
+  top: 13px;
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 40% 40%, #e7e7e7 70%, #b0b0b0 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px 0 #b0b0b044, 0 0 0 2px #dedede;
+  z-index: 2;
+}
+
+.news-item::before {
+  left: 13px;
+}
+.news-item::after {
+  right: 13px;
 }
 
 @keyframes fadeIn {
@@ -270,9 +274,9 @@ nav.side-nav a.active {
 .news-divider {
   color: #b08d4a;
   font-family: 'Georgia', serif;
-  font-size: 1em;
+  font-size: 1.1em;
   letter-spacing: 0.12em;
-  margin: 0 0 12px 0;
+  margin: 0 0 18px 0;
   opacity: 0.55;
   user-select: none;
   text-align: left;
@@ -411,7 +415,7 @@ ul li::before {
 
 @media (max-width: 900px) {
   nav.side-nav {
-    width: 100px;
+    width: 120px;
     min-width: 80px;
     max-width: 130px;
     padding: 10px 0;
