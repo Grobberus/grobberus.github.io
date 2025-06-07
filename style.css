@@ -1,4 +1,6 @@
-/* === Базовые цвета и фон === */
+/* style.css */
+
+/* === Общие стили для всего сайта === */
 body {
   margin: 0;
   font-family: 'Georgia', serif;
@@ -19,8 +21,9 @@ nav.side-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #4e2a0a;
-  padding: 20px 0;
+  justify-content: flex-start;
+  background-color: #4e2a0a;
+  padding: 20px 0 20px 0;
   border-radius: 0 12px 12px 0;
   width: 180px;
   box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.18);

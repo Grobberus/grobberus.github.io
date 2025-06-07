@@ -1,10 +1,8 @@
-// =================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===================
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 let newsData = [];
 let loadedCount = 0;
 const LOAD_STEP = 10;
 
-// =================== ФУНКЦИИ: ОБЩИЕ ===================
 function formatDate(dateStr) {
   if (!dateStr) return '';
   if (/^\d{1,2}\.\d{1,2}\.\d{2,4}$/.test(dateStr)) {
@@ -33,7 +31,6 @@ function convertDriveLinkToDirect(url) {
   return url;
 }
 
-// =================== РАЗДЕЛ: НОВОСТИ ===================
 async function loadNews() {
   const container = document.getElementById('news-container');
   container.textContent = 'Загрузка новостей...';
