@@ -280,3 +280,17 @@ footer p {
     margin: 10px 15px 20px 15px;
   }
 }
+
+footer, footer p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer::before,
+footer::after,
+footer p::before,
+footer p::after {
+  content: none !important;
+}
+
