@@ -25,9 +25,9 @@ nav.side-nav {
   align-items: center;
   justify-content: flex-start;
   background-color: #4e2a0a;
-  padding: 28px 0 28px 0;
-  border-radius: 0 18px 18px 0;
-  width: 240px;
+  padding: 20px 0 20px 0;
+  border-radius: 0 12px 12px 0;
+  width: 180px;
   box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
   position: sticky;
@@ -37,8 +37,8 @@ nav.side-nav {
 }
 
 .logo-wrapper {
-  width: 80%;
-  margin: 0 auto 36px auto;
+  width: 75%;
+  margin: 0 auto 30px auto;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@ nav.side-nav {
   aspect-ratio: 1 / 1;
   height: auto;
   display: block;
-  border-radius: 18px;
+  border-radius: 12px;
   box-shadow: 0 0 30px 0 #ffb84d;
   border: none;
   background: #2c1a0f;
@@ -64,18 +64,18 @@ nav.side-nav {
 
 /* --- Кнопки меню --- */
 nav.side-nav a {
-  padding: 15px 26px;
-  margin-bottom: 20px;
+  padding: 13px 22px;
+  margin-bottom: 15px;
   font-weight: bold;
-  border-radius: 12px;
+  border-radius: 10px;
   text-decoration: none;
   color: #ffb84d;
   background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
   box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
   transition: background 0.25s, color 0.25s, transform 0.13s, box-shadow 0.18s;
   cursor: pointer;
-  width: 98%;
-  max-width: 190px;
+  width: 96%;
+  max-width: 160px;
   box-sizing: border-box;
   text-align: center;
   outline: none;
@@ -93,7 +93,7 @@ nav.side-nav a:hover,
 nav.side-nav a:focus {
   background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
   color: #3e2a13;
-  transform: scale(1.035);
+  transform: scale(1.03);
   box-shadow: 0 4px 18px 2px #ffb84d55;
   text-decoration: none;
 }
@@ -113,9 +113,9 @@ nav.side-nav a.active {
   flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 24px;
-  margin-left: 24px;
-  max-width: calc(100vw - 260px);
+  padding: 20px;
+  margin-left: 20px;
+  max-width: calc(100vw - 220px);
   overflow-y: auto;
 }
 
@@ -126,8 +126,8 @@ nav.side-nav a.active {
   background: rgba(60, 30, 10, 0.91);
   box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
   border: 1.5px solid rgba(255, 140, 0, 0.15);
-  border-radius: 22px;
-  padding: 38px 54px;
+  border-radius: 16px;
+  padding: 32px 44px;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -211,19 +211,19 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* === Новости (тёплый свиток, газетная текстура, гвоздики) === */
+/* === Новости (тёмный свиток, газетная текстура, гвоздики) === */
 
 .news-item {
-  background: linear-gradient(120deg, #f9e8c6 90%, #f5e6c4 100%);
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #f9e8c6 90%, #f5e6c4 100%);
+  background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
   background-blend-mode: multiply;
   border: 2.5px solid #ffb84d33;
-  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #e5d4b1 inset;
+  box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
   border-radius: 14px 14px 22px 22px / 12px 12px 22px 22px;
   padding: 32px 44px 26px 44px;
   margin-bottom: 36px;
   font-family: 'Georgia', serif;
-  color: #5b4636;
+  color: #f5e6c4;
   line-height: 1.7em;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -263,27 +263,20 @@ nav.side-nav a.active {
 
 .news-date {
   font-size: 1.1em;
-  color: #b08d4a;
-  margin-bottom: 9px;
+  color: #ffb84d;
+  margin-bottom: 14px;
   font-weight: 700;
-  text-shadow: 0 0 3px #ffb84d;
+  text-shadow: 0 0 4px #ffb84d;
   letter-spacing: 0.04em;
   font-family: 'Georgia', serif;
 }
 
 .news-divider {
-  color: #b08d4a;
-  font-family: 'Georgia', serif;
-  font-size: 1.1em;
-  letter-spacing: 0.12em;
-  margin: 0 0 18px 0;
-  opacity: 0.55;
-  user-select: none;
-  text-align: left;
+  display: none;
 }
 
 .news-text {
-  color: #5b4636;
+  color: #f5e6c4;
   text-shadow: 0 0 1px #b08d4a55;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -311,7 +304,7 @@ nav.side-nav a.active {
   object-fit: contain;
   transition: transform 0.3s ease;
   cursor: pointer;
-  background: #fdf6e3;
+  background: #2b1c0a;
 }
 
 .news-images-wrapper img:hover {
@@ -321,7 +314,7 @@ nav.side-nav a.active {
 /* --- Завитки для заголовков новостей --- */
 .news-item h2, .news-item h3 {
   font-family: 'Georgia', serif;
-  color: #b08d4a;
+  color: #ffb84d;
   text-align: center;
   letter-spacing: 0.10em;
   font-size: 1.25em;
