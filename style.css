@@ -1,15 +1,70 @@
-/* style.css */
+/* === CSS-ПЕРЕМЕННЫЕ ТЕМ === */
 
-/* === Общие стили для всего сайта === */
+:root {
+  --main-bg: #f5e6c4;
+  --main-text: #5b4636;
+  --menu-bg: #4e2a0a;
+  --menu-link: #ffb84d;
+  --menu-link-active: #3e2a13;
+  --menu-link-bg: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
+  --menu-link-bg-active: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  --menu-link-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
+  --menu-radius: 12px;
+  --news-bg: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  --news-bg-img: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  --news-text: #f5e6c4;
+  --news-date: #ffb84d;
+  --news-border: 2.5px solid #ffb84d33;
+  --nail-bg: radial-gradient(circle at 40% 40%, #444 70%, #222 100%);
+  --nail-shadow: 0 2px 6px 0 #2228, 0 0 0 2px #555;
+  --main-content-bg: rgba(60, 30, 10, 0.91);
+  --main-content-radius: 16px;
+  --main-content-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
+  --main-content-border: 1.5px solid rgba(255, 140, 0, 0.15);
+  --button-bg: linear-gradient(135deg, #ffb84d 0%, #ff8c00 100%);
+  --button-bg-hover: linear-gradient(135deg, #ffdb9d 0%, #ffa733 100%);
+  --button-text: #3b1f00;
+  --button-text-hover: #a65a00;
+  --rules-title: #ffb84d;
+  --rules-list: #ffb84d;
+}
+
+body.theme-dark {
+  --main-bg: #2c1a0f;
+  --main-text: #e7d7b9;
+  --menu-bg: #24170c;
+  --menu-link: #ffda8a;
+  --menu-link-active: #18120a;
+  --menu-link-bg: linear-gradient(90deg, #2c1a0f 60%, #24170c 100%);
+  --menu-link-bg-active: linear-gradient(90deg, #ffda8a 0%, #b08d4a 100%);
+  --menu-link-shadow: 0 2px 12px 0 rgba(176, 141, 74, 0.13);
+  --menu-radius: 12px;
+  --news-bg: linear-gradient(120deg, #18120a 90%, #2c1a0f 100%);
+  --news-bg-img: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #18120a 90%, #2c1a0f 100%);
+  --news-text: #e7d7b9;
+  --news-date: #ffb84d;
+  --news-border: 2.5px solid #b08d4a33;
+  --nail-bg: radial-gradient(circle at 40% 40%, #444 70%, #222 100%);
+  --nail-shadow: 0 2px 6px 0 #2228, 0 0 0 2px #555;
+  --main-content-bg: rgba(32, 22, 10, 0.92);
+  --main-content-radius: 16px;
+  --main-content-shadow: 0 6px 40px 0 rgba(176, 141, 74, 0.10), 0 1.5px 0 #b08d4a inset;
+  --main-content-border: 1.5px solid rgba(176, 141, 74, 0.13);
+  --button-bg: linear-gradient(135deg, #b08d4a 0%, #3e2a13 100%);
+  --button-bg-hover: linear-gradient(135deg, #ffda8a 0%, #b08d4a 100%);
+  --button-text: #ffe4b0;
+  --button-text-hover: #3e2a13;
+  --rules-title: #ffda8a;
+  --rules-list: #ffda8a;
+}
 
 body {
   margin: 0;
   font-family: 'Georgia', serif;
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='40' height='40' fill='rgba(255,255,255,0.02)'/%3E%3Crect x='0' y='0' width='20' height='20' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");
-  background-blend-mode: overlay;
-  color: #f5e6c4;
+  background: var(--main-bg);
+  color: var(--main-text);
   flex-direction: row;
   width: 100vw;
   height: 100vh;
@@ -24,9 +79,9 @@ nav.side-nav {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #4e2a0a;
+  background-color: var(--menu-bg);
   padding: 20px 0 20px 0;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 var(--menu-radius) var(--menu-radius) 0;
   width: 180px;
   box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
@@ -69,9 +124,9 @@ nav.side-nav a {
   font-weight: bold;
   border-radius: 10px;
   text-decoration: none;
-  color: #ffb84d;
-  background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
-  box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
+  color: var(--menu-link);
+  background: var(--menu-link-bg);
+  box-shadow: var(--menu-link-shadow);
   transition: background 0.25s, color 0.25s, transform 0.13s, box-shadow 0.18s;
   cursor: pointer;
   width: 96%;
@@ -91,19 +146,100 @@ nav.side-nav a:last-child {
 
 nav.side-nav a:hover,
 nav.side-nav a:focus {
-  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
-  color: #3e2a13;
+  background: var(--menu-link-bg-active);
+  color: var(--menu-link-active);
   transform: scale(1.03);
   box-shadow: 0 4px 18px 2px #ffb84d55;
   text-decoration: none;
 }
 
 nav.side-nav a.active {
-  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
-  color: #3e2a13;
+  background: var(--menu-link-bg-active);
+  color: var(--menu-link-active);
   box-shadow: 0 4px 18px 2px #ffb84d55;
   text-decoration: none;
 }
+
+/* === Переключатель темы === */
+
+.theme-switcher-wrapper {
+  margin-top: auto;
+  margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.theme-switcher {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 74px;
+  height: 36px;
+  position: relative;
+  user-select: none;
+}
+
+.theme-toggle-track {
+  background: #c5a76a;
+  border-radius: 20px;
+  width: 74px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 8px #0002;
+  transition: background 0.2s;
+}
+
+.theme-toggle-icon {
+  font-size: 1.3em;
+  width: 28px;
+  text-align: center;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.theme-toggle-icon.sun {
+  color: #ffd700;
+  margin-left: 3px;
+}
+
+.theme-toggle-icon.moon {
+  color: #444;
+  margin-right: 3px;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  left: 5px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff8e1;
+  box-shadow: 0 2px 6px #0003;
+  transition: left 0.2s, background 0.2s;
+  z-index: 2;
+}
+
+.theme-switcher.dark .theme-toggle-thumb {
+  left: 43px;
+  background: #222;
+}
+
+.theme-switcher.dark .theme-toggle-icon.sun {
+  opacity: 0.4;
+}
+
+.theme-switcher.dark .theme-toggle-icon.moon {
+  opacity: 1;
+  color: #ffd700;
+}
+
 
 /* === Контейнер для контента и футера === */
 
@@ -123,10 +259,10 @@ nav.side-nav a.active {
 
 .main-content {
   flex: 1;
-  background: rgba(60, 30, 10, 0.91);
-  box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
-  border: 1.5px solid rgba(255, 140, 0, 0.15);
-  border-radius: 16px;
+  background: var(--main-content-bg);
+  box-shadow: var(--main-content-shadow);
+  border: var(--main-content-border);
+  border-radius: var(--main-content-radius);
   padding: 32px 44px;
   line-height: 1.6;
   display: flex;
@@ -142,8 +278,8 @@ nav.side-nav a.active {
   margin-top: 30px;
   font-weight: bold;
   font-size: 1.3em;
-  color: #ffb84d;
-  text-shadow: 0 0 4px #ffb84d;
+  color: var(--rules-title);
+  text-shadow: 0 0 4px var(--rules-title);
   letter-spacing: 0.06em;
 }
 
@@ -163,8 +299,8 @@ nav.side-nav a.active {
 .server-ip {
   font-size: 1.8em;
   font-weight: 900;
-  color: #ffb84d;
-  text-shadow: 0 0 12px #ffb84d;
+  color: var(--rules-title);
+  text-shadow: 0 0 12px var(--rules-title);
   margin-top: 0;
   margin-bottom: 40px;
   letter-spacing: 2px;
@@ -186,8 +322,8 @@ nav.side-nav a.active {
 }
 
 .main-button {
-  background: linear-gradient(135deg, #ffb84d 0%, #ff8c00 100%);
-  color: #3b1f00;
+  background: var(--button-bg);
+  color: var(--button-text);
   font-weight: bold;
   padding: 14px 28px;
   border-radius: 12px;
@@ -195,7 +331,7 @@ nav.side-nav a.active {
   box-shadow: 0 2px 10px 1px #ffb84d77;
   filter: drop-shadow(0 0 8px #ffb84d66);
   border: none;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, color 0.3s;
   user-select: none;
   display: inline-block;
   text-align: center;
@@ -205,25 +341,24 @@ nav.side-nav a.active {
 
 .main-button:hover,
 .main-button:focus {
-  background: linear-gradient(135deg, #ffdb9d 0%, #ffa733 100%);
-  color: #a65a00;
+  background: var(--button-bg-hover);
+  color: var(--button-text-hover);
   box-shadow: 0 4px 20px 2px #ffb84d99;
   outline: none;
 }
 
-/* === Новости (тёмный свиток, газетная текстура, 4 гвоздя) === */
+/* === Новости (тёмный свиток, газетная текстура, 1 гвоздик) === */
 
 .news-item {
-  background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
+  background: var(--news-bg-img);
   background-blend-mode: multiply;
-  border: 2.5px solid #ffb84d33;
+  border: var(--news-border);
   box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
   border-radius: 14px 14px 22px 22px / 12px 12px 22px 22px;
   padding: 32px 44px 26px 44px;
   margin-bottom: 36px;
   font-family: 'Georgia', serif;
-  color: #f5e6c4;
+  color: var(--news-text);
   line-height: 1.7em;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -236,20 +371,17 @@ nav.side-nav a.active {
   animation: fadeIn 0.7s ease forwards;
 }
 
-/* --- 4 гвоздя (тёмно-серые, по углам) --- */
+/* --- 1 гвоздик (тёмно-серый, левый верхний угол) --- */
 .news-item .nail {
   position: absolute;
   width: 18px;
   height: 18px;
-  background: radial-gradient(circle at 40% 40%, #444 70%, #222 100%);
+  background: var(--nail-bg);
   border-radius: 50%;
-  box-shadow: 0 2px 6px 0 #2228, 0 0 0 2px #555;
+  box-shadow: var(--nail-shadow);
   z-index: 2;
 }
 .news-item .nail-tl { top: 13px; left: 13px; }
-.news-item .nail-tr { top: 13px; right: 13px; }
-.news-item .nail-bl { bottom: 13px; left: 13px; }
-.news-item .nail-br { bottom: 13px; right: 13px; }
 
 @keyframes fadeIn {
   to { opacity: 1; }
@@ -257,10 +389,10 @@ nav.side-nav a.active {
 
 .news-date {
   font-size: 1.1em;
-  color: #ffb84d;
+  color: var(--news-date);
   margin-bottom: 14px;
   font-weight: 700;
-  text-shadow: 0 0 4px #ffb84d;
+  text-shadow: 0 0 4px var(--news-date);
   letter-spacing: 0.04em;
   font-family: 'Georgia', serif;
 }
@@ -270,7 +402,7 @@ nav.side-nav a.active {
 }
 
 .news-text {
-  color: #f5e6c4;
+  color: var(--news-text);
   text-shadow: 0 0 1px #b08d4a55;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -308,7 +440,7 @@ nav.side-nav a.active {
 /* --- Завитки для заголовков новостей --- */
 .news-item h2, .news-item h3 {
   font-family: 'Georgia', serif;
-  color: #ffb84d;
+  color: var(--news-date);
   text-align: center;
   letter-spacing: 0.10em;
   font-size: 1.25em;
@@ -318,7 +450,7 @@ nav.side-nav a.active {
 .news-item h2::before, .news-item h3::before,
 .news-item h2::after, .news-item h3::after {
   content: "~";
-  color: #ffb84d;
+  color: var(--news-date);
   font-size: 1.1em;
   margin: 0 8px;
   opacity: 0.55;
@@ -390,7 +522,7 @@ ul li {
 
 ul li::before {
   content: "◆";
-  color: #ffb84d;
+  color: var(--rules-list);
   position: absolute;
   left: 0;
   font-size: 1.1em;
