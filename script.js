@@ -2,13 +2,28 @@ const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwz
 
 function formatDate(dateStr) {
   if (!dateStr) return '';
-  const date = new Date(dateStr);
-  if (isNaN(date)) return dateStr;
-  const d = ('0' + date.getDate()).slice(-2);
-  const m = ('0' + (date.getMonth() + 1)).slice(-2);
-  const y = date.getFullYear();
-  return `${d}.${m}.${y}`;
+  // Если формат "ДД.ММ.ГГ" или "ДД.ММ.ГГГГ"
+  if (/^\d{1,2}\.\d{1,2}\.\d{2,4}$/.test(dateStr)) {
+    let [d, m, y] = dateStr.split('.');
+    d = d.padStart(2, '0');
+    m = m.padStart(2, '0');
+    if (y.length === 2) y = '20' + y; // 23 -> 2023
+    return `${d}.${m}.${y}`;
+  }
+  // Если формат "YYYY-MM-DD"
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    const [y, m, d] = dateStr.split('-');
+    return `${d}.${m}.${y}`;
+  }
+  // Если формат "MM/DD/YYYY"
+  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
+    const [m, d, y] = dateStr.split('/');
+    return `${d.padStart(2, '0')}.${m.padStart(2, '0')}.${y}`;
+  }
+  // Если не распознано — вернуть как есть
+  return dateStr;
 }
+
 
 function convertDriveLinkToDirect(url) {
   const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
