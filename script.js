@@ -84,7 +84,7 @@ function loadMoreNews() {
 
     // Один гвоздик (левый верхний угол)
     const nailTL = document.createElement('span');
-    nailTL.className = 'nail nail-tl';
+    nailTL.className = 'nail';
     newsItem.appendChild(nailTL);
 
     const dateDiv = document.createElement('div');
