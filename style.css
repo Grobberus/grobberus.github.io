@@ -7,14 +7,14 @@ body {
   font-family: 'Georgia', serif;
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #18120a 0%, #2c1a0f 100%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='40' height='40' fill='rgba(255,255,255,0.01)'/%3E%3Crect x='0' y='0' width='20' height='20' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
+  background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='40' height='40' fill='rgba(255,255,255,0.02)'/%3E%3Crect x='0' y='0' width='20' height='20' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");
   background-blend-mode: overlay;
-  color: #e7d7b9;
+  color: #f5e6c4;
   flex-direction: row;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  box-shadow: inset 0 0 60px #0e0702;
+  box-shadow: inset 0 0 60px #1e1107;
 }
 
 /* === Меню слева === */
@@ -24,11 +24,11 @@ nav.side-nav {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #24170c;
-  padding: 20px 0 20px 0;
-  border-radius: 0 12px 12px 0;
-  width: 180px;
-  box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.14);
+  background-color: #4e2a0a;
+  padding: 24px 0 24px 0;
+  border-radius: 0 16px 16px 0;
+  width: 210px;
+  box-shadow: 2px 0 20px 0 rgba(255, 140, 0, 0.18);
   height: 100vh;
   position: sticky;
   top: 0;
@@ -38,8 +38,8 @@ nav.side-nav {
 
 /* --- Логотип сервера --- */
 .logo-wrapper {
-  width: 75%;
-  margin: 0 auto 30px auto;
+  width: 80%;
+  margin: 0 auto 32px auto;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -51,50 +51,61 @@ nav.side-nav {
   aspect-ratio: 1 / 1;
   height: auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 0 30px 0 #b08d4a, 0 0 0 5px rgba(255, 140, 0, 0.06) inset;
-  border: 2.5px solid #b08d4a;
-  background: #18120a;
+  border-radius: 16px;
+  box-shadow: 0 0 30px 0 #ffb84d, 0 0 0 0px rgba(255, 140, 0, 0.10) inset;
+  border: none;
+  background: #2c1a0f;
   object-fit: cover;
   transition: box-shadow 0.3s;
 }
 
 .server-icon:hover {
-  box-shadow: 0 0 40px 8px #b08d4a, 0 0 0 10px rgba(255, 140, 0, 0.09) inset;
+  box-shadow: 0 0 48px 8px #ffb84d, 0 0 0 0px rgba(255, 140, 0, 0.13) inset;
 }
 
 /* --- Кнопки меню --- */
 nav.side-nav a {
-  padding: 12px 20px;
-  margin-bottom: 15px;
+  padding: 14px 24px;
+  margin-bottom: 18px;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
-  color: #e7d7b9;
-  background-color: rgba(176, 141, 74, 0.10);
-  box-shadow: 0 0 8px rgba(176, 141, 74, 0.13);
-  transition: background 0.25s, color 0.25s, transform 0.15s;
+  color: #ffb84d;
+  background: linear-gradient(90deg, #3e2a13 60%, #4e2a0a 100%);
+  box-shadow: 0 2px 12px 0 rgba(255, 184, 77, 0.12);
+  transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.2s;
   cursor: pointer;
-  width: 100%;
+  width: 94%;
+  max-width: 170px;
   box-sizing: border-box;
   text-align: center;
+  outline: none;
+  border: 1.5px solid transparent;
+  font-size: 1.08em;
+  letter-spacing: 0.03em;
+  filter: drop-shadow(0 0 3px #ffb84d33);
 }
 
 nav.side-nav a:last-child {
   margin-bottom: 0;
 }
 
-nav.side-nav a:hover {
-  background-color: rgba(176, 141, 74, 0.24);
-  color: #ffe4b0;
-  transform: translateX(6px) scale(1.04);
+nav.side-nav a:hover,
+nav.side-nav a:focus {
+  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3e2a13;
+  transform: scale(1.045);
+  box-shadow: 0 4px 18px 2px #ffb84d55;
+  border-color: #ffb84d77;
+  text-decoration: none;
 }
 
 nav.side-nav a.active {
-  color: #ffda8a;
-  text-decoration: underline;
-  background-color: rgba(176, 141, 74, 0.18);
-  box-shadow: 0 0 10px rgba(176, 141, 74, 0.23);
+  background: linear-gradient(90deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3e2a13;
+  box-shadow: 0 4px 18px 2px #ffb84d55;
+  border-color: #ffb84d77;
+  text-decoration: none;
 }
 
 /* === Контейнер для контента и футера === */
@@ -107,7 +118,7 @@ nav.side-nav a.active {
   box-sizing: border-box;
   padding: 20px;
   margin-left: 20px;
-  max-width: calc(100vw - 220px);
+  max-width: calc(100vw - 240px);
   overflow-y: auto;
 }
 
@@ -115,11 +126,11 @@ nav.side-nav a.active {
 
 .main-content {
   flex: 1;
-  background: rgba(32, 22, 10, 0.92);
-  box-shadow: 0 6px 40px 0 rgba(176, 141, 74, 0.10), 0 1.5px 0 #b08d4a inset;
-  border: 1.5px solid rgba(176, 141, 74, 0.13);
-  border-radius: 16px;
-  padding: 30px 40px;
+  background: rgba(60, 30, 10, 0.88);
+  box-shadow: 0 6px 40px 0 rgba(255, 140, 0, 0.15), 0 1.5px 0 #ffb84d inset;
+  border: 1.5px solid rgba(255, 140, 0, 0.15);
+  border-radius: 20px;
+  padding: 32px 48px;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -134,8 +145,9 @@ nav.side-nav a.active {
   margin-top: 30px;
   font-weight: bold;
   font-size: 1.3em;
-  color: #ffda8a;
-  text-shadow: 0 0 4px #b08d4a;
+  color: #ffb84d;
+  text-shadow: 0 0 4px #ffb84d;
+  letter-spacing: 0.06em;
 }
 
 .rules-section-title::before {
@@ -145,7 +157,7 @@ nav.side-nav a.active {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: rgba(176, 141, 74, 0.4);
+  background-color: rgba(255, 140, 0, 0.4);
   border-radius: 2px;
 }
 
@@ -154,8 +166,8 @@ nav.side-nav a.active {
 .server-ip {
   font-size: 1.8em;
   font-weight: 900;
-  color: #ffda8a;
-  text-shadow: 0 0 12px #b08d4a;
+  color: #ffb84d;
+  text-shadow: 0 0 12px #ffb84d;
   margin-top: 0;
   margin-bottom: 40px;
   letter-spacing: 2px;
@@ -172,19 +184,19 @@ nav.side-nav a.active {
   margin-bottom: 10px;
   flex-wrap: nowrap;
   flex-shrink: 0;
-  border-top: 2px solid rgba(176, 141, 74, 0.22);
+  border-top: 2px solid rgba(255, 140, 0, 0.22);
   padding-top: 15px;
 }
 
 .main-button {
-  background: linear-gradient(135deg, #b08d4a 0%, #3e2a13 100%);
-  color: #ffe4b0;
+  background: linear-gradient(135deg, #ffb84d 0%, #ff8c00 100%);
+  color: #3b1f00;
   font-weight: bold;
   padding: 14px 28px;
   border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 2px 10px 1px #b08d4a77;
-  filter: drop-shadow(0 0 8px #b08d4a66);
+  box-shadow: 0 2px 10px 1px #ffb84d77;
+  filter: drop-shadow(0 0 8px #ffb84d66);
   border: none;
   transition: background 0.3s, box-shadow 0.3s;
   user-select: none;
@@ -196,26 +208,26 @@ nav.side-nav a.active {
 
 .main-button:hover,
 .main-button:focus {
-  background: linear-gradient(135deg, #ffda8a 0%, #b08d4a 100%);
-  color: #3e2a13;
-  box-shadow: 0 4px 20px 2px #b08d4a99;
+  background: linear-gradient(135deg, #ffdb9d 0%, #ffa733 100%);
+  color: #a65a00;
+  box-shadow: 0 4px 20px 2px #ffb84d99;
   outline: none;
 }
 
-/* === Новости (тёмный свиток, газетная текстура) === */
+/* === Новости (тёплый свиток, газетная текстура) === */
 
 .news-item {
-  background: linear-gradient(120deg, #2a1e0e 90%, #3e2a13 100%);
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #2a1e0e 90%, #3e2a13 100%);
+  background: linear-gradient(120deg, #fdf6e3 90%, #f5e6c4 100%);
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #fdf6e3 90%, #f5e6c4 100%);
   background-blend-mode: multiply;
-  border: 1.5px solid #b08d4a33;
-  box-shadow: 4px 4px 16px rgba(0,0,0,0.18), 0 0 0 2px #1b1408 inset;
-  border-radius: 10px 10px 16px 16px / 8px 8px 16px 16px;
-  padding: 22px 32px 20px 32px;
-  margin-bottom: 28px;
+  border: 2.5px solid #ffb84d33;
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.10), 0 0 0 2px #e5d4b1 inset;
+  border-radius: 12px 12px 20px 20px / 10px 10px 20px 20px;
+  padding: 28px 38px 24px 38px;
+  margin-bottom: 32px;
   font-family: 'Georgia', serif;
-  color: #e7d7b9;
-  line-height: 1.6em;
+  color: #5b4636;
+  line-height: 1.7em;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -232,13 +244,13 @@ nav.side-nav a.active {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 18px;
-  height: 18px;
-  background: #3e2a13;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.13);
+  width: 20px;
+  height: 20px;
+  background: #f5e6c4;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.10);
   transform: rotate(45deg);
   border-radius: 2px;
-  opacity: 0.18;
+  opacity: 0.14;
 }
 
 @keyframes fadeIn {
@@ -247,10 +259,12 @@ nav.side-nav a.active {
 
 .news-date {
   font-size: 1.1em;
-  color: #ffda8a;
+  color: #b08d4a;
   margin-bottom: 9px;
   font-weight: 700;
-  text-shadow: 0 0 3px #b08d4a;
+  text-shadow: 0 0 3px #ffb84d;
+  letter-spacing: 0.04em;
+  font-family: 'Georgia', serif;
 }
 
 .news-divider {
@@ -261,10 +275,11 @@ nav.side-nav a.active {
   margin: 0 0 12px 0;
   opacity: 0.55;
   user-select: none;
+  text-align: left;
 }
 
 .news-text {
-  color: #e7d7b9;
+  color: #5b4636;
   text-shadow: 0 0 1px #b08d4a55;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -285,18 +300,37 @@ nav.side-nav a.active {
 }
 
 .news-images-wrapper img {
-  border: 1px solid #b08d4a55;
-  box-shadow: 2px 2px 7px rgba(0,0,0,0.13);
-  border-radius: 4px;
+  border: 1.5px solid #b08d4a55;
+  box-shadow: 2px 2px 7px rgba(0,0,0,0.10);
+  border-radius: 6px;
   height: 135px;
   object-fit: contain;
   transition: transform 0.3s ease;
   cursor: pointer;
-  background: #2a1e0e;
+  background: #fdf6e3;
 }
 
 .news-images-wrapper img:hover {
   transform: scale(1.05);
+}
+
+/* --- Завитки для заголовков новостей --- */
+.news-item h2, .news-item h3 {
+  font-family: 'Georgia', serif;
+  color: #b08d4a;
+  text-align: center;
+  letter-spacing: 0.10em;
+  font-size: 1.25em;
+  margin: 0 0 12px 0;
+  position: relative;
+}
+.news-item h2::before, .news-item h3::before,
+.news-item h2::after, .news-item h3::after {
+  content: "~";
+  color: #ffb84d;
+  font-size: 1.1em;
+  margin: 0 8px;
+  opacity: 0.55;
 }
 
 /* === Лупа - оверлей === */
@@ -327,10 +361,10 @@ footer {
   text-align: center;
   padding: 20px 10px;
   font-size: 0.9em;
-  color: #c8b89a;
+  color: #d9c9a3;
   border-top: none;
   margin: 0;
-  text-shadow: 0 0 3px #b08d4a;
+  text-shadow: 0 0 3px #ffb84d;
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;
@@ -365,7 +399,7 @@ ul li {
 
 ul li::before {
   content: "◆";
-  color: #ffda8a;
+  color: #ffb84d;
   position: absolute;
   left: 0;
   font-size: 1.1em;
@@ -374,6 +408,23 @@ ul li::before {
 }
 
 /* === Адаптив === */
+
+@media (max-width: 900px) {
+  nav.side-nav {
+    width: 100px;
+    min-width: 80px;
+    max-width: 130px;
+    padding: 10px 0;
+  }
+  .logo-wrapper {
+    width: 38px;
+    min-width: 38px;
+    margin-bottom: 12px;
+  }
+  .server-icon {
+    border-radius: 10px;
+  }
+}
 
 @media (max-width: 768px) {
   body {
@@ -385,8 +436,8 @@ ul li::before {
     justify-content: flex-start;
     width: 100%;
     height: auto;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 2px 10px rgba(176, 141, 74, 0.13);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 10px rgba(255, 140, 0, 0.13);
     padding: 10px 0;
     gap: 20px;
     position: relative;
