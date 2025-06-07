@@ -1,5 +1,22 @@
+// script.js
+
+// =================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===================
+// URL CSV-файла с новостями
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 
+// Массив всех новостей
+let newsData = [];
+// Сколько новостей уже показано
+let loadedCount = 0;
+// Сколько новостей подгружать за раз
+const LOAD_STEP = 10;
+
+// =================== ФУНКЦИИ: ОБЩИЕ ===================
+
+/**
+ * Приводит дату к формату ДД.ММ.ГГГГ вне зависимости от исходного формата.
+ * Поддерживает: ДД.ММ.ГГ, ДД.ММ.ГГГГ, YYYY-MM-DD, MM/DD/YYYY
+ */
 function formatDate(dateStr) {
   if (!dateStr) return '';
   // Если формат "ДД.ММ.ГГ" или "ДД.ММ.ГГГГ"
@@ -24,6 +41,9 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
+/**
+ * Преобразует ссылку Google Drive в прямую ссылку для <img>
+ */
 function convertDriveLinkToDirect(url) {
   const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
   if (match && match[1]) {
@@ -32,10 +52,11 @@ function convertDriveLinkToDirect(url) {
   return url;
 }
 
-let newsData = []; // Все новости
-let loadedCount = 0; // Сколько новостей уже показано
-const LOAD_STEP = 10; // Сколько новостей грузить за раз
+// =================== РАЗДЕЛ: НОВОСТИ ===================
 
+/**
+ * Загружает новости из Google Sheets (CSV) и инициализирует подгрузку.
+ */
 async function loadNews() {
   const container = document.getElementById('news-container');
   container.textContent = 'Загрузка новостей...';
@@ -60,17 +81,19 @@ async function loadNews() {
       return;
     }
 
-    loadMoreNews(); // Загрузить первые 10 новостей
+    // Загружаем первую порцию новостей
+    loadMoreNews();
 
-    // Обработчик клика для лупы
+    // Обработчик клика для увеличения картинки (лупа)
     container.addEventListener('click', function(event) {
       if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
         openImageLightbox(event.target.src, event.target.alt);
       }
     });
 
-    // Добавляем обработчик прокрутки для подгрузки
-    window.addEventListener('scroll', onScrollLoadMore);
+    // Обработчик прокрутки для подгрузки новостей (именно у .content-wrapper!)
+    const scrollContainer = document.querySelector('.content-wrapper');
+    scrollContainer.addEventListener('scroll', onScrollLoadMore);
 
   } catch (e) {
     container.textContent = 'Не удалось загрузить новости.';
@@ -78,7 +101,9 @@ async function loadNews() {
   }
 }
 
-// Функция подгрузки следующей порции новостей
+/**
+ * Подгружает следующую порцию новостей и добавляет их в контейнер.
+ */
 function loadMoreNews() {
   const container = document.getElementById('news-container');
   const nextItems = newsData.slice(loadedCount, loadedCount + LOAD_STEP);
@@ -123,19 +148,23 @@ function loadMoreNews() {
   loadedCount += nextItems.length;
 }
 
-// Обработчик прокрутки страницы для подгрузки новостей
+/**
+ * Обработчик прокрутки .content-wrapper для подгрузки новостей при достижении низа.
+ */
 function onScrollLoadMore() {
-  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
-    // Если осталась ещё новость для загрузки
+  const container = document.querySelector('.content-wrapper');
+  if ((container.scrollTop + container.clientHeight) >= (container.scrollHeight - 100)) {
     if (loadedCount < newsData.length) {
       loadMoreNews();
     } else {
-      // Удаляем обработчик, если все новости загружены
-      window.removeEventListener('scroll', onScrollLoadMore);
+      container.removeEventListener('scroll', onScrollLoadMore);
     }
   }
 }
 
+/**
+ * Открывает увеличенное изображение (лупа) по клику на картинку.
+ */
 function openImageLightbox(src, alt) {
   if (document.querySelector('.image-lightbox-overlay')) return;
 
@@ -162,4 +191,9 @@ function openImageLightbox(src, alt) {
   document.addEventListener('keydown', onKeyDown);
 }
 
-loadNews();
+// =================== ИНИЦИАЛИЗАЦИЯ ===================
+
+// Только для страницы новостей!
+if (document.getElementById('news-container')) {
+  loadNews();
+}

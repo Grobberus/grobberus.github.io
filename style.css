@@ -1,5 +1,7 @@
 /* style.css */
 
+/* === Общие стили для всего сайта === */
+
 body {
   margin: 0;
   font-family: 'Georgia', serif;
@@ -13,7 +15,8 @@ body {
   overflow: hidden;
 }
 
-/* Меню слева */
+/* === Меню слева === */
+
 nav.side-nav {
   display: flex;
   flex-direction: column;
@@ -53,7 +56,8 @@ nav.side-nav a.active {
   box-shadow: 0 0 10px rgba(204, 122, 0, 0.5);
 }
 
-/* Контейнер для контента и футера */
+/* === Контейнер для контента и футера === */
+
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -66,7 +70,8 @@ nav.side-nav a.active {
   overflow-y: auto;
 }
 
-/* Основной контент */
+/* === Основной контент === */
+
 .main-content {
   flex: 1;
   background: rgba(60, 30, 10, 0.85);
@@ -78,7 +83,8 @@ nav.side-nav a.active {
   flex-direction: column;
 }
 
-/* Заголовки разделов правил */
+/* === Заголовки разделов правил === */
+
 .rules-section-title {
   position: relative;
   padding-top: 15px;
@@ -100,7 +106,8 @@ nav.side-nav a.active {
   border-radius: 2px;
 }
 
-/* IP сервера (Главная) */
+/* === IP сервера (Главная) === */
+
 .server-ip {
   font-size: 1.8em;
   font-weight: 900;
@@ -112,7 +119,8 @@ nav.side-nav a.active {
   user-select: all;
 }
 
-/* Кнопки на главной */
+/* === Кнопки на главной === */
+
 .button-group {
   display: flex;
   gap: 20px;
@@ -148,7 +156,8 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* Новости */
+/* === Новости === */
+
 .news-item {
   padding: 20px 30px;
   margin-bottom: 20px;
@@ -182,7 +191,8 @@ nav.side-nav a.active {
   box-sizing: border-box;
 }
 
-/* Обёртка для картинок */
+/* === Обёртка для картинок === */
+
 .news-images-wrapper {
   display: flex;
   gap: 10px;
@@ -191,7 +201,8 @@ nav.side-nav a.active {
   justify-content: flex-start;
 }
 
-/* Картинки новостей */
+/* === Картинки новостей === */
+
 .news-images-wrapper img {
   height: 200px;
   width: auto;
@@ -207,7 +218,8 @@ nav.side-nav a.active {
   user-select: none;
 }
 
-/* Лупа - оверлей */
+/* === Лупа - оверлей === */
+
 .image-lightbox-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -227,7 +239,8 @@ nav.side-nav a.active {
   user-select: none;
 }
 
-/* Футер */
+/* === Футер === */
+
 footer {
   text-align: center;
   padding: 20px 10px;
@@ -248,7 +261,15 @@ footer p {
   list-style: none; /* отключаем маркеры */
 }
 
-/* Адаптив */
+footer::before,
+footer::after,
+footer p::before,
+footer p::after {
+  content: none !important;
+}
+
+/* === Адаптив === */
+
 @media (max-width: 768px) {
   body {
     flex-direction: column;
@@ -280,17 +301,3 @@ footer p {
     margin: 10px 15px 20px 15px;
   }
 }
-
-footer, footer p {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-footer::before,
-footer::after,
-footer p::before,
-footer p::after {
-  content: none !important;
-}
-
