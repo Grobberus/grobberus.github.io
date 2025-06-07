@@ -18,19 +18,24 @@
     }
 
     .news-images-wrapper img {
-      max-width: 300px;       /* Максимальная ширина картинки */
-      max-height: 200px;      /* Максимальная высота картинки */
-      width: auto;
-      height: auto;
+      height: 200px;       /* фиксированная высота */
+      width: 100%;         /* растягиваем по ширине контейнера */
+      max-width: 300px;    /* ограничиваем максимальную ширину */
       border: 2px solid #ff8c00; /* Оранжевая рамка */
       border-radius: 8px;
       padding: 4px;
       box-sizing: border-box;
-      object-fit: contain;
+      object-fit: cover;   /* заполняем контейнер без пустых полей */
+      cursor: pointer;      /* Курсор указывает на кликабельность */
+      transition: transform 0.3s ease; /* Плавное увеличение */
+      margin: 0;            /* убираем пустые отступы сверху и снизу */
       display: block;
     }
-
-    /* Остальной ваш CSS можно оставить без изменений */
+    .news-images-wrapper img.zoomed {
+      transform: scale(1.5);
+      position: relative;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
@@ -56,6 +61,7 @@
   <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 
+    // Функция форматирования даты из "YYYY-MM-DD" в "DD.MM.YYYY"
     function formatDate(dateStr) {
       if (!dateStr) return '';
       const date = new Date(dateStr);
@@ -64,6 +70,15 @@
       const m = ('0' + (date.getMonth() + 1)).slice(-2);
       const y = date.getFullYear();
       return `${d}.${m}.${y}`;
+    }
+
+    // Функция преобразования ссылки Google Drive в прямую ссылку для <img>
+    function convertDriveLinkToDirect(url) {
+      const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+      if (match && match[1]) {
+        return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+      }
+      return url; // если не совпало, возвращаем как есть
     }
 
     async function loadNews() {
@@ -108,8 +123,9 @@
             imagesWrapper.className = 'news-images-wrapper';
 
             imgUrls.forEach(imgUrl => {
+              const directUrl = convertDriveLinkToDirect(imgUrl);
               const img = document.createElement('img');
-              img.src = imgUrl;
+              img.src = directUrl;
               img.alt = 'Изображение новости';
               imagesWrapper.appendChild(img);
             });
@@ -127,6 +143,13 @@
 
           newsItem.appendChild(textP);
           container.appendChild(newsItem);
+        });
+
+        // Обработчик клика для приближения картинки
+        container.addEventListener('click', function(event) {
+          if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
+            event.target.classList.toggle('zoomed');
+          }
         });
       } catch (e) {
         container.textContent = 'Не удалось загрузить новости.';
