@@ -156,7 +156,6 @@ function openImageLightbox(src, alt) {
   document.addEventListener('keydown', onKeyDown);
 }
 
-// =================== ИНИЦИАЛИЗАЦИЯ ===================
 if (document.getElementById('news-container')) {
   loadNews();
 }
