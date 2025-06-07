@@ -211,7 +211,7 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* === Новости (тёмный свиток, газетная текстура, гвоздики) === */
+/* === Новости (тёмный свиток, газетная текстура, 4 гвоздя) === */
 
 .news-item {
   background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
@@ -236,25 +236,35 @@ nav.side-nav a.active {
   animation: fadeIn 0.7s ease forwards;
 }
 
-/* --- Гвоздики (кнопки) в углах --- */
+/* --- 4 гвоздя (тёмно-серые) --- */
 .news-item::before,
-.news-item::after {
+.news-item::after,
+.news-item .nail {
   content: "";
   position: absolute;
-  top: 13px;
   width: 18px;
   height: 18px;
-  background: radial-gradient(circle at 40% 40%, #e7e7e7 70%, #b0b0b0 100%);
+  background: radial-gradient(circle at 40% 40%, #444 70%, #222 100%);
   border-radius: 50%;
-  box-shadow: 0 2px 6px 0 #b0b0b044, 0 0 0 2px #dedede;
+  box-shadow: 0 2px 6px 0 #2228, 0 0 0 2px #555;
   z-index: 2;
 }
 
 .news-item::before {
+  top: 13px;
   left: 13px;
 }
 .news-item::after {
+  top: 13px;
   right: 13px;
+}
+.news-item .nail-top-left {
+  top: 13px;
+  left: 40px;
+}
+.news-item .nail-top-right {
+  top: 13px;
+  right: 40px;
 }
 
 @keyframes fadeIn {

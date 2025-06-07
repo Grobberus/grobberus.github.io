@@ -82,6 +82,15 @@ function loadMoreNews() {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
 
+    // 4 гвоздя (2 через псевдоэлементы, 2 через span)
+    const nail1 = document.createElement('span');
+    nail1.className = 'nail nail-top-left';
+    newsItem.appendChild(nail1);
+
+    const nail2 = document.createElement('span');
+    nail2.className = 'nail nail-top-right';
+    newsItem.appendChild(nail2);
+
     const dateDiv = document.createElement('div');
     dateDiv.className = 'news-date';
     dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
