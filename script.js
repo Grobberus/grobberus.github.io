@@ -1,81 +1,121 @@
-// scripts.js
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSCuP7luNbTXwzyoU7OuAjF8rsyvKg22xYvXS6r2FTVwN0N3vfC0cI_oMsa9Xr0Z3Icdp8j8FQN4wj/pub?output=csv';
 
-// Функция форматирования даты из "YYYY-MM-DD" в "DD.MM.YYYY"
 function formatDate(dateStr) {
   if (!dateStr) return '';
-  const parts = dateStr.split('-');
-  if(parts.length !== 3) return dateStr;
-  return `${parts[2]}.${parts[1]}.${parts[0]}`;
+  const date = new Date(dateStr);
+  if (isNaN(date)) return dateStr;
+  const d = ('0' + date.getDate()).slice(-2);
+  const m = ('0' + (date.getMonth() + 1)).slice(-2);
+  const y = date.getFullYear();
+  return `${d}.${m}.${y}`;
 }
 
-// Функция преобразования ссылки Google Drive в прямую ссылку для <img>
 function convertDriveLinkToDirect(url) {
   const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
   if (match && match[1]) {
     return `https://drive.google.com/uc?export=view&id=${match[1]}`;
   }
-  return url; // если не совпало, возвращаем как есть
+  return url;
 }
 
-// Загружаем новости из news.json и отображаем в обратном порядке
-fetch('news.json?v=' + new Date().getTime()) // параметр для обхода кеша
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Ошибка загрузки новостей');
-    }
-    return response.json();
-  })
-  .then(newsData => {
-    const container = document.getElementById('news-container');
-    container.innerHTML = ''; // очищаем контейнер перед добавлением новостей
+async function loadNews() {
+  const container = document.getElementById('news-container');
+  container.textContent = 'Загрузка новостей...';
 
-    newsData.reverse().forEach(item => {
+  try {
+    const url = CSV_URL + '&_=' + new Date().getTime();
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Ошибка загрузки CSV');
+    const csvText = await response.text();
+
+    const parsed = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+    });
+
+    const news = parsed.data;
+
+    if (news.length === 0) {
+      container.textContent = 'Новостей пока нет.';
+      return;
+    }
+
+    container.innerHTML = '';
+    news.reverse().forEach(item => {
       const newsItem = document.createElement('div');
       newsItem.className = 'news-item';
 
-      const dateElem = document.createElement('div');
-      dateElem.className = 'news-date';
-      dateElem.textContent = formatDate(item.date);
+      const dateDiv = document.createElement('div');
+      dateDiv.className = 'news-date';
+      dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
 
-      const textElem = document.createElement('p');
-      textElem.className = 'news-text';
-      // заменяем переносы строк на <br> для корректного отображения
-      textElem.innerHTML = item.text.replace(/\n/g, '<br>');
+      newsItem.appendChild(dateDiv);
 
-      newsItem.appendChild(dateElem);
+      const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
+      const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
 
-      // Если есть картинки, создаём контейнер и добавляем все картинки
-      if (item.image) {
-        const imgUrls = item.image.split('\n').map(s => s.trim()).filter(s => s.length > 0);
-        if (imgUrls.length > 0) {
-          const imagesWrapper = document.createElement('div');
-          imagesWrapper.className = 'news-images-wrapper';
+      if (imgUrls.length > 0) {
+        const imagesWrapper = document.createElement('div');
+        imagesWrapper.className = 'news-images-wrapper';
 
-          imgUrls.forEach(imgUrl => {
-            const directUrl = convertDriveLinkToDirect(imgUrl);
-            const img = document.createElement('img');
-            img.src = directUrl;
-            img.alt = 'Изображение новости';
-            imagesWrapper.appendChild(img);
-          });
+        imgUrls.forEach(imgUrl => {
+          const directUrl = convertDriveLinkToDirect(imgUrl);
+          const img = document.createElement('img');
+          img.src = directUrl;
+          img.alt = 'Изображение новости';
+          imagesWrapper.appendChild(img);
+        });
 
-          newsItem.appendChild(imagesWrapper);
-        }
+        newsItem.appendChild(imagesWrapper);
       }
 
-      newsItem.appendChild(textElem);
+      const textP = document.createElement('p');
+      textP.className = 'news-text';
+
+      let rawText = item.text || item.Text || item.TEXT || '';
+      rawText = rawText.replace(/\n{2,}/g, '\n');
+      textP.innerHTML = rawText.replace(/\n/g, '<br>');
+
+      newsItem.appendChild(textP);
       container.appendChild(newsItem);
     });
 
-    // Обработчик клика для приближения картинки
     container.addEventListener('click', function(event) {
       if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
-        event.target.classList.toggle('zoomed');
+        openImageLightbox(event.target.src, event.target.alt);
       }
     });
-  })
-  .catch(error => {
-    const container = document.getElementById('news-container');
+
+  } catch (e) {
     container.textContent = 'Не удалось загрузить новости.';
-    console.error(error);
+    console.error(e);
+  }
+}
+
+function openImageLightbox(src, alt) {
+  if (document.querySelector('.image-lightbox-overlay')) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'image-lightbox-overlay';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt || 'Увеличенное изображение';
+
+  overlay.appendChild(img);
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener('click', () => {
+    overlay.remove();
   });
+
+  function onKeyDown(e) {
+    if (e.key === 'Escape') {
+      overlay.remove();
+      document.removeEventListener('keydown', onKeyDown);
+    }
+  }
+  document.addEventListener('keydown', onKeyDown);
+}
+
+loadNews();
