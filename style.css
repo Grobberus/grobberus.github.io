@@ -202,24 +202,40 @@ nav.side-nav a.active {
   outline: none;
 }
 
-/* === Новости === */
+/* === Новости (газетный стиль) === */
 
 .news-item {
+  background: #fdf6e3;
+  border: 1px solid #d4c9a1;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
   padding: 20px 30px;
   margin-bottom: 20px;
-  border-radius: 16px;
-  background: rgba(60,30,10,0.93);
-  border: 1.5px solid rgba(255, 184, 77, 0.17);
-  box-shadow: 0 4px 24px 0 rgba(255, 140, 0, 0.12);
-  line-height: 1.5em;
+  font-family: 'Georgia', serif;
+  color: #5b4636;
+  line-height: 1.6em;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 2px solid rgba(255, 140, 0, 0.4);
+  border-bottom: none;
+  position: relative;
   opacity: 0;
   animation: fadeIn 0.7s ease forwards;
+}
+
+.news-item::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: #d4c9a1;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  transform: rotate(45deg);
+  border-radius: 2px;
 }
 
 @keyframes fadeIn {
@@ -228,47 +244,46 @@ nav.side-nav a.active {
 
 .news-date {
   font-size: 1.1em;
-  color: #ffb84d;
+  color: #a67c00;
   margin-bottom: 10px;
   font-weight: 700;
-  text-shadow: 0 0 4px #ffb84d;
+  text-shadow: 0 0 3px #bfa14a;
 }
 
 .news-text {
-  color: #f5e6c4;
-  text-shadow: 0 0 2px #a65a00;
+  color: #5b4636;
+  text-shadow: 0 0 1px #a1865a;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
   box-sizing: border-box;
+  font-size: 1.05em;
 }
 
-/* === Обёртка для картинок === */
-
 .news-images-wrapper {
+  margin-top: 15px;
+  border-top: 1px dashed #d4c9a1;
+  padding-top: 10px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 10px 0;
   justify-content: flex-start;
 }
 
-/* === Картинки новостей === */
-
 .news-images-wrapper img {
-  height: 200px;
-  width: auto;
-  max-width: 100%;
-  border: 2px solid #ff8c00;
-  border-radius: 8px;
-  padding: 4px;
-  box-sizing: border-box;
+  border: 1px solid #d4c9a1;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  height: 180px;
   object-fit: contain;
-  cursor: pointer;
   transition: transform 0.3s ease;
-  display: block;
-  user-select: none;
+  cursor: pointer;
+  background: #fdf6e3;
+}
+
+.news-images-wrapper img:hover {
+  transform: scale(1.05);
 }
 
 /* === Лупа - оверлей === */
