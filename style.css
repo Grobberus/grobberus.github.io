@@ -1,13 +1,13 @@
 /* style.css */
 
 /* === Общие стили для всего сайта === */
+
 body {
   margin: 0;
   font-family: 'Georgia', serif;
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #2c1a0f, #4e2a0a), url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-  background-blend-mode: overlay;
+  background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%);
   color: #f5e6c4;
   flex-direction: row;
   width: 100vw;
@@ -199,7 +199,6 @@ nav.side-nav a.active {
 /* === Новости === */
 .news-item {
   background: linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(120deg, #2b1c0a 90%, #3e2a13 100%);
   background-blend-mode: multiply;
   border: 2.5px solid #ffb84d33;
   box-shadow: 0 4px 20px 0 rgba(255, 184, 77, 0.11), 0 0 0 2px #1b1408 inset;
