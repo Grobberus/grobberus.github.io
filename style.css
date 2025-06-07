@@ -236,11 +236,8 @@ nav.side-nav a.active {
   animation: fadeIn 0.7s ease forwards;
 }
 
-/* --- 4 гвоздя (тёмно-серые) --- */
-.news-item::before,
-.news-item::after,
+/* --- 4 гвоздя (тёмно-серые, по углам) --- */
 .news-item .nail {
-  content: "";
   position: absolute;
   width: 18px;
   height: 18px;
@@ -249,23 +246,10 @@ nav.side-nav a.active {
   box-shadow: 0 2px 6px 0 #2228, 0 0 0 2px #555;
   z-index: 2;
 }
-
-.news-item::before {
-  top: 13px;
-  left: 13px;
-}
-.news-item::after {
-  top: 13px;
-  right: 13px;
-}
-.news-item .nail-top-left {
-  top: 13px;
-  left: 40px;
-}
-.news-item .nail-top-right {
-  top: 13px;
-  right: 40px;
-}
+.news-item .nail-tl { top: 13px; left: 13px; }
+.news-item .nail-tr { top: 13px; right: 13px; }
+.news-item .nail-bl { bottom: 13px; left: 13px; }
+.news-item .nail-br { bottom: 13px; right: 13px; }
 
 @keyframes fadeIn {
   to { opacity: 1; }

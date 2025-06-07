@@ -82,14 +82,22 @@ function loadMoreNews() {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
 
-    // 4 гвоздя (2 через псевдоэлементы, 2 через span)
-    const nail1 = document.createElement('span');
-    nail1.className = 'nail nail-top-left';
-    newsItem.appendChild(nail1);
+    // 4 гвоздя (по углам)
+    const nailTL = document.createElement('span');
+    nailTL.className = 'nail nail-tl';
+    newsItem.appendChild(nailTL);
 
-    const nail2 = document.createElement('span');
-    nail2.className = 'nail nail-top-right';
-    newsItem.appendChild(nail2);
+    const nailTR = document.createElement('span');
+    nailTR.className = 'nail nail-tr';
+    newsItem.appendChild(nailTR);
+
+    const nailBL = document.createElement('span');
+    nailBL.className = 'nail nail-bl';
+    newsItem.appendChild(nailBL);
+
+    const nailBR = document.createElement('span');
+    nailBR.className = 'nail nail-br';
+    newsItem.appendChild(nailBR);
 
     const dateDiv = document.createElement('div');
     dateDiv.className = 'news-date';
