@@ -287,14 +287,23 @@ footer {
 }
 
 .news-images-wrapper img {
-  max-width: 300px;       /* Максимальная ширина картинки */
-  max-height: 200px;      /* Максимальная высота картинки */
-  width: auto;
-  height: auto;
+  height: 200px;        /* Фиксированная высота */
+  width: auto;          /* Ширина подстраивается под пропорции картинки */
+  max-width: none;      /* Убираем ограничение по ширине */
   border: 2px solid #ff8c00;
   border-radius: 8px;
   padding: 4px;
   box-sizing: border-box;
   object-fit: contain;
+  cursor: pointer;      /* Курсор указывает на кликабельность */
+  transition: transform 0.3s ease; /* Плавное увеличение */
   display: block;
+  margin: 10px 0;
+}
+
+/* Класс для увеличения картинки при клике */
+.news-images-wrapper img.zoomed {
+  transform: scale(1.5);
+  position: relative;
+  z-index: 10;
 }
