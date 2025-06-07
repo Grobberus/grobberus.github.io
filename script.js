@@ -24,7 +24,6 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
-
 function convertDriveLinkToDirect(url) {
   const match = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
   if (match && match[1]) {
@@ -32,6 +31,10 @@ function convertDriveLinkToDirect(url) {
   }
   return url;
 }
+
+let newsData = []; // Все новости
+let loadedCount = 0; // Сколько новостей уже показано
+const LOAD_STEP = 10; // Сколько новостей грузить за раз
 
 async function loadNews() {
   const container = document.getElementById('news-container');
@@ -48,62 +51,88 @@ async function loadNews() {
       skipEmptyLines: true,
     });
 
-    const news = parsed.data;
+    newsData = parsed.data.reverse(); // Новые сверху
+    loadedCount = 0;
+    container.innerHTML = '';
 
-    if (news.length === 0) {
+    if (newsData.length === 0) {
       container.textContent = 'Новостей пока нет.';
       return;
     }
 
-    container.innerHTML = '';
-    news.reverse().forEach(item => {
-      const newsItem = document.createElement('div');
-      newsItem.className = 'news-item';
+    loadMoreNews(); // Загрузить первые 10 новостей
 
-      const dateDiv = document.createElement('div');
-      dateDiv.className = 'news-date';
-      dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
-
-      newsItem.appendChild(dateDiv);
-
-      const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
-      const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
-
-      if (imgUrls.length > 0) {
-        const imagesWrapper = document.createElement('div');
-        imagesWrapper.className = 'news-images-wrapper';
-
-        imgUrls.forEach(imgUrl => {
-          const directUrl = convertDriveLinkToDirect(imgUrl);
-          const img = document.createElement('img');
-          img.src = directUrl;
-          img.alt = 'Изображение новости';
-          imagesWrapper.appendChild(img);
-        });
-
-        newsItem.appendChild(imagesWrapper);
-      }
-
-      const textP = document.createElement('p');
-      textP.className = 'news-text';
-
-      let rawText = item.text || item.Text || item.TEXT || '';
-      rawText = rawText.replace(/\n{2,}/g, '\n');
-      textP.innerHTML = rawText.replace(/\n/g, '<br>');
-
-      newsItem.appendChild(textP);
-      container.appendChild(newsItem);
-    });
-
+    // Обработчик клика для лупы
     container.addEventListener('click', function(event) {
       if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
         openImageLightbox(event.target.src, event.target.alt);
       }
     });
 
+    // Добавляем обработчик прокрутки для подгрузки
+    window.addEventListener('scroll', onScrollLoadMore);
+
   } catch (e) {
     container.textContent = 'Не удалось загрузить новости.';
     console.error(e);
+  }
+}
+
+// Функция подгрузки следующей порции новостей
+function loadMoreNews() {
+  const container = document.getElementById('news-container');
+  const nextItems = newsData.slice(loadedCount, loadedCount + LOAD_STEP);
+  nextItems.forEach(item => {
+    const newsItem = document.createElement('div');
+    newsItem.className = 'news-item';
+
+    const dateDiv = document.createElement('div');
+    dateDiv.className = 'news-date';
+    dateDiv.textContent = formatDate(item.date || item.Date || item.DATE);
+
+    newsItem.appendChild(dateDiv);
+
+    const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
+    const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
+    if (imgUrls.length > 0) {
+      const imagesWrapper = document.createElement('div');
+      imagesWrapper.className = 'news-images-wrapper';
+
+      imgUrls.forEach(imgUrl => {
+        const directUrl = convertDriveLinkToDirect(imgUrl);
+        const img = document.createElement('img');
+        img.src = directUrl;
+        img.alt = 'Изображение новости';
+        imagesWrapper.appendChild(img);
+      });
+
+      newsItem.appendChild(imagesWrapper);
+    }
+
+    const textP = document.createElement('p');
+    textP.className = 'news-text';
+
+    let rawText = item.text || item.Text || item.TEXT || '';
+    rawText = rawText.replace(/\n{2,}/g, '\n');
+    textP.innerHTML = rawText.replace(/\n/g, '<br>');
+
+    newsItem.appendChild(textP);
+    container.appendChild(newsItem);
+  });
+  loadedCount += nextItems.length;
+}
+
+// Обработчик прокрутки страницы для подгрузки новостей
+function onScrollLoadMore() {
+  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
+    // Если осталась ещё новость для загрузки
+    if (loadedCount < newsData.length) {
+      loadMoreNews();
+    } else {
+      // Удаляем обработчик, если все новости загружены
+      window.removeEventListener('scroll', onScrollLoadMore);
+    }
   }
 }
 
