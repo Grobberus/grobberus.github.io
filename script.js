@@ -88,6 +88,12 @@ function loadMoreNews() {
 
     newsItem.appendChild(dateDiv);
 
+    // Разделитель после даты
+    const divider = document.createElement('div');
+    divider.className = 'news-divider';
+    divider.textContent = '----------';
+    newsItem.appendChild(divider);
+
     const imgUrlsRaw = item.image || item.img || item.IMAGE || '';
     const imgUrls = imgUrlsRaw.split('\n').map(s => s.trim()).filter(s => s.length > 0);
 
