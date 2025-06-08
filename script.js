@@ -57,13 +57,13 @@ async function loadNews() {
 
     loadMoreNews();
 
+    // Делегирование клика по картинке для лупы
     container.addEventListener('click', function(event) {
       if (event.target.tagName === 'IMG' && event.target.closest('.news-images-wrapper')) {
         openImageLightbox(event.target.src, event.target.alt);
       }
     });
 
-    // Исправлено: обработчик скролла теперь на window
     window.addEventListener('scroll', onScrollLoadMore);
 
   } catch (e) {
@@ -122,7 +122,6 @@ function loadMoreNews() {
 }
 
 function onScrollLoadMore() {
-  // Проверяем, долистал ли пользователь до конца страницы
   if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
     if (loadedCount < newsData.length) {
       loadMoreNews();
@@ -133,7 +132,9 @@ function onScrollLoadMore() {
 }
 
 function openImageLightbox(src, alt) {
-  if (document.querySelector('.image-lightbox-overlay')) return;
+  // Удалить предыдущий лайтбокс, если он есть
+  const oldOverlay = document.querySelector('.image-lightbox-overlay');
+  if (oldOverlay) oldOverlay.remove();
 
   const overlay = document.createElement('div');
   overlay.className = 'image-lightbox-overlay';
@@ -145,10 +146,14 @@ function openImageLightbox(src, alt) {
   overlay.appendChild(img);
   document.body.appendChild(overlay);
 
-  overlay.addEventListener('click', () => {
-    overlay.remove();
+  // Закрытие по клику вне картинки
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.remove();
+    }
   });
 
+  // Закрытие по клавише Escape
   function onKeyDown(e) {
     if (e.key === 'Escape') {
       overlay.remove();
