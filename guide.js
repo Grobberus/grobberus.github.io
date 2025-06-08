@@ -1,4 +1,4 @@
-const GUIDE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQXvVYw0pK1X1i7QwI8QK2VJm4w6w7m3A4u3b6g9r5b7w5d/pub?output=csv';
+const GUIDE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8MHFjkuPlvjctHFmRf1VEmJ0C1xjF4M9DzVEkg2PtxhjcOCzDleTcvPsebZnsey3rYbUfv5uN7qM9/pub?output=csv';
 
 let guideData = [];
 let loadedCount = 0;
@@ -14,7 +14,7 @@ function convertDriveLinkToDirect(url) {
 
 async function loadGuide() {
   const container = document.getElementById('guide-container');
-  container.textContent = 'Загрузка...';
+  container.textContent = 'Загрузка гайдов...';
 
   try {
     const url = GUIDE_CSV_URL + '&_=' + new Date().getTime();
