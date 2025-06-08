@@ -600,3 +600,16 @@ ul:not(.admin-block ul) li::before {
     max-height: 55vw;
   }
 }
+
+@media (max-width: 900px) {
+  .main-content-overlay {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+@media (max-width: 650px) {
+  .main-content-overlay {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+}
