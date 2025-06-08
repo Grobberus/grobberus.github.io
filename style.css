@@ -1,5 +1,3 @@
-/* style.css */
-
 /* === Общие стили для всего сайта === */
 
 body {
@@ -122,42 +120,39 @@ nav.side-nav a.active {
   backdrop-filter: blur(2px);
 }
 
-/* === Главная страница: двухколоночный компактный стиль === */
-.main-content-flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 38px;
-  min-height: 430px;
-  height: 430px;
+/* === Главная страница: грид для описания и картинки === */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 44px;
+  min-height: 520px;
+  height: 520px;
+  align-items: start;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
 .main-left {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 48%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .main-right {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 48%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   height: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 h1 {
-  font-size: 2.1em;
+  font-size: 2.2em;
   margin-top: 0;
   margin-bottom: 18px;
   color: #ffb84d;
@@ -167,47 +162,43 @@ h1 {
 }
 
 .server-description {
-  font-size: 1.05em;
-  line-height: 1.5;
+  font-size: 1.04em;
+  line-height: 1.45;
   color: #f5e6c4;
   margin-bottom: 22px;
   max-width: 100%;
   word-break: break-word;
   white-space: normal;
-  overflow: hidden;
-  /* Ограничение высоты для компактности */
-  max-height: 245px;
-  overflow-y: auto;
-  padding-right: 6px;
+  overflow: visible;
 }
 
 .server-ip-row {
   display: flex;
   align-items: center;
-  margin: 12px 0 0 0;
-  font-size: 1.1em;
-  gap: 12px;
+  margin: 20px 0 0 0;
+  font-size: 1.11em;
+  gap: 10px;
 }
 
 .server-ip-label {
   color: #ffb84d;
   font-weight: bold;
-  font-size: 1.08em;
+  font-size: 1.07em;
   letter-spacing: 0.03em;
 }
 
 .server-ip-value {
   color: #ffb84d;
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: 1.22em;
   letter-spacing: 0.06em;
   text-shadow: 0 0 8px #ffb84d77;
 }
 
 .main-image {
   width: 100%;
-  max-width: 420px;
-  height: 220px;
+  max-width: 350px;
+  height: 170px;
   object-fit: cover;
   border-radius: 14px;
   box-shadow: 0 2px 16px #0006, 0 0 0 2px #ffb84d33;
@@ -223,11 +214,11 @@ h1 {
   border-radius: 10px;
   margin-top: 0;
   padding: 14px 18px 10px 18px;
-  font-size: 1em;
+  font-size: 0.98em;
   color: #f5e6c4;
   box-shadow: 0 2px 10px #ffb84d22;
   width: 100%;
-  max-width: 420px;
+  max-width: 350px;
 }
 
 .admin-title {
@@ -255,19 +246,46 @@ h1 {
   font-weight: bold;
 }
 
-/* Кнопки и футер */
-.button-group {
+/* --- Кнопки как на маленьком скрине --- */
+.button-group.main-buttons-centered {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
-  border-top: 2px solid rgba(255, 140, 0, 0.22);
-  padding-top: 15px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  border-top: 1.5px solid #b08d4a44;
+  padding-top: 18px;
 }
 
+.main-button {
+  background: #ffb84d;
+  color: #3e2a13;
+  font-weight: bold;
+  padding: 13px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px 1px #ffb84d77, 0 0 0 3px #fff0b8 inset;
+  border: 2px solid #ffb84d;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  font-size: 1.06em;
+  letter-spacing: 0.03em;
+  filter: none;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.main-button:hover,
+.main-button:focus {
+  background: #ffda8a;
+  color: #a65a00;
+  border-color: #ffda8a;
+  box-shadow: 0 4px 18px 2px #ffb84d88;
+}
+
+/* --- Футер --- */
 footer {
   text-align: center;
   padding: 10px 10px 12px 10px;
@@ -282,14 +300,11 @@ footer {
   list-style: none;
 }
 
-/* --- Остальной ваш CSS без изменений (новости, лупа, списки, адаптив и т.д.) --- */
+/* --- Остальной ваш CSS (новости, списки, адаптив и т.д.) --- */
 
-/* ... (оставьте все остальные стили как есть) ... */
-
-/* === Адаптив === */
 @media (max-width: 1100px) {
-  .main-content-flex {
-    flex-direction: column;
+  .main-content-grid {
+    grid-template-columns: 1fr;
     height: auto;
     min-height: unset;
     gap: 18px;
@@ -302,14 +317,11 @@ footer {
   .main-image, .admin-block {
     max-width: 100%;
   }
-  .server-description {
-    max-height: 220px;
-  }
 }
 
 @media (max-width: 650px) {
-  .main-content-flex {
-    flex-direction: column;
+  .main-content-grid {
+    grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px 0 0 0;
   }
@@ -322,7 +334,6 @@ footer {
     max-width: 100%;
   }
   .server-description {
-    max-height: 160px;
     font-size: 0.97em;
     padding-right: 0;
   }
@@ -333,8 +344,8 @@ footer {
 
 /* Стилизация полосы прокрутки под стиль сайта */
 body, .content-wrapper {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #ffb84d #3e2a13; /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #ffb84d #3e2a13;
 }
 ::-webkit-scrollbar {
   width: 12px;
