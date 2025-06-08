@@ -120,52 +120,90 @@ nav.side-nav a.active {
   backdrop-filter: blur(2px);
 }
 
-/* === Заголовки === */
-.rules-section-title {
-  position: relative;
-  padding-top: 15px;
-  margin-top: 30px;
-  font-weight: bold;
-  font-size: 1.3em;
-  color: #ffb84d;
-  text-shadow: 0 0 4px #ffb84d;
-  letter-spacing: 0.06em;
+/* === Главная страница: двухколоночный стиль === */
+.main-content-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 44px;
+  min-height: 440px;
+  height: 440px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-.rules-section-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 140, 0, 0.4);
-  border-radius: 2px;
+.main-left, .main-right {
+  width: 50%;
+  min-width: 0;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
 }
 
-/* === IP сервера (Главная) === */
-.server-ip {
-  font-size: 1.8em;
-  font-weight: 900;
-  color: #ffb84d;
-  text-shadow: 0 0 12px #ffb84d;
+.main-left {
+  padding-right: 16px;
+}
+
+.main-right {
+  align-items: center;
+  padding-left: 16px;
+}
+
+h1 {
+  font-size: 2em;
   margin-top: 0;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-  user-select: all;
+  margin-bottom: 16px;
+  color: #ffb84d;
+  text-shadow: 0 0 8px #ffb84d44;
+  font-weight: bold;
+  letter-spacing: 0.04em;
 }
 
-/* === Кнопки на главной === */
+.server-description {
+  font-size: 1.02em;
+  line-height: 1.42;
+  color: #f5e6c4;
+  margin-bottom: 0;
+  max-width: 100%;
+  word-break: break-word;
+  white-space: normal;
+  overflow: visible;
+}
+
+.main-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 350px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 2px 24px #0007, 0 0 0 4px #ffb84d55;
+  margin-bottom: 18px;
+  margin-top: 8px;
+  background: #2c1a0f;
+  display: block;
+  border: 3px solid #ffb84d;
+  outline: 2px solid #3e2a13;
+  outline-offset: -5px;
+}
+
+/* --- Кнопки --- */
 .button-group {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
-  border-top: 2px solid rgba(255, 140, 0, 0.22);
-  padding-top: 15px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  border-top: 1.5px solid #b08d4a44;
+  padding-top: 18px;
 }
 
 .main-button {
@@ -195,6 +233,23 @@ nav.side-nav a.active {
   border-color: #ffda8a;
   box-shadow: 0 4px 18px 2px #ffb84d88;
 }
+
+/* --- Футер --- */
+footer {
+  text-align: center;
+  padding: 10px 10px 12px 10px;
+  font-size: 0.9em;
+  color: #d9c9a3;
+  border-top: none;
+  margin: 0;
+  text-shadow: 0 0 3px #ffb84d;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* --- Остальной ваш CSS (новости, списки, адаптив и т.д.) --- */
 
 /* === Новости === */
 .news-item {
@@ -348,41 +403,48 @@ ul li::before {
 }
 
 /* === Адаптив === */
-@media (max-width: 900px) {
-  nav.side-nav {
-    width: 120px;
-    min-width: 80px;
-    max-width: 130px;
-    padding: 10px 0;
+@media (max-width: 1100px) {
+  .main-content-flex {
+    flex-direction: column;
+    height: auto;
+    min-height: unset;
+    gap: 18px;
   }
-  .logo-wrapper {
-    width: 38px;
-    min-width: 38px;
-    margin-bottom: 12px;
-  }
-  .server-icon { border-radius: 10px; }
-}
-
-@media (max-width: 768px) {
-  body { flex-direction: column; }
-  nav.side-nav {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-start;
+  .main-left, .main-right {
+    max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 2px 10px rgba(255, 140, 0, 0.13);
-    padding: 10px 0;
-    gap: 20px;
-    position: relative;
+    padding: 0;
   }
-  .logo-wrapper { width: 60px; margin: 0 15px 0 0; padding: 0; }
-  .server-icon { width: 100%; min-width: 40px; max-width: 60px; aspect-ratio: 1/1; }
-  nav.side-nav a { width: auto; min-width: 90px; margin-bottom: 0; padding: 10px 15px; }
-  .content-wrapper { margin-left: 0; padding: 10px 15px; max-width: 100vw; }
-  .main-content { margin-bottom: 20px; }
-  footer { margin: 10px 15px 20px 15px; }
+  .main-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .main-content-flex {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 0 0;
+    min-height: unset;
+    height: auto;
+  }
+  .main-left, .main-right {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+  .main-image {
+    max-width: 100%;
+  }
+  .server-description {
+    font-size: 0.97em;
+    padding-right: 0;
+  }
+  h1 {
+    font-size: 1.2em;
+  }
 }
 
 /* Стилизация полосы прокрутки под стиль сайта */
