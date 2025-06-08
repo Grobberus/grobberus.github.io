@@ -63,8 +63,8 @@ async function loadNews() {
       }
     });
 
-    const scrollContainer = document.querySelector('.content-wrapper');
-    scrollContainer.addEventListener('scroll', onScrollLoadMore);
+    // Исправлено: обработчик скролла теперь на window
+    window.addEventListener('scroll', onScrollLoadMore);
 
   } catch (e) {
     container.textContent = 'Не удалось загрузить новости.';
@@ -122,12 +122,12 @@ function loadMoreNews() {
 }
 
 function onScrollLoadMore() {
-  const container = document.querySelector('.content-wrapper');
-  if ((container.scrollTop + container.clientHeight) >= (container.scrollHeight - 100)) {
+  // Проверяем, долистал ли пользователь до конца страницы
+  if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
     if (loadedCount < newsData.length) {
       loadMoreNews();
     } else {
-      container.removeEventListener('scroll', onScrollLoadMore);
+      window.removeEventListener('scroll', onScrollLoadMore);
     }
   }
 }
