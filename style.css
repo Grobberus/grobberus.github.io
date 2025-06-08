@@ -37,6 +37,7 @@ body {
   box-shadow: inset 0 0 60px #1e1107;
 }
 
+/* --- Сайдбар --- */
 nav.side-nav {
   display: flex;
   flex-direction: column;
@@ -140,6 +141,7 @@ nav.top-nav a.active {
   flex-direction: column;
 }
 
+/* --- Верхнее меню на мобильных --- */
 @media (max-width: 900px) {
   nav.side-nav {
     display: none;
@@ -150,7 +152,7 @@ nav.top-nav a.active {
     align-items: center;
     justify-content: flex-start;
     background-color: #4e2a0a;
-    padding: 0 0 0 0;
+    padding: 0;
     border-radius: 0 0 12px 12px;
     width: 100vw;
     min-width: 0;
@@ -160,12 +162,46 @@ nav.top-nav a.active {
     position: sticky;
     top: 0;
     left: 0;
+    overflow: hidden;
   }
   nav.top-nav .logo-wrapper {
     width: 36px;
+    min-width: 36px;
     margin: 0 12px 0 6px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
   }
-  nav.top-nav a {
+  nav.top-nav .server-icon {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  nav.top-nav .top-nav-scroll {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #ffb84d #3e2a13;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+  }
+  nav.top-nav .top-nav-scroll::-webkit-scrollbar {
+    height: 5px;
+    background: #3e2a13;
+    border-radius: 6px;
+  }
+  nav.top-nav .top-nav-scroll::-webkit-scrollbar-thumb {
+    background: #ffb84d;
+    border-radius: 6px;
+  }
+  nav.top-nav .top-nav-scroll a {
     margin: 0 7px 0 0;
     padding: 10px 16px;
     max-width: unset;
@@ -176,8 +212,9 @@ nav.top-nav a.active {
     overflow: visible;
     text-overflow: unset;
     display: inline-block;
+    flex-shrink: 0;
   }
-  nav.top-nav a:last-child { margin-right: 0; }
+  nav.top-nav .top-nav-scroll a:last-child { margin-right: 0; }
   .content-wrapper {
     margin-left: 0;
     max-width: 100vw;
@@ -188,9 +225,10 @@ nav.top-nav a.active {
 @media (max-width: 650px) {
   nav.top-nav .logo-wrapper {
     width: 26px;
+    min-width: 26px;
     margin: 0 7px 0 2px;
   }
-  nav.top-nav a {
+  nav.top-nav .top-nav-scroll a {
     padding: 7px 9px;
     font-size: 0.95em;
     border-radius: 6px;
@@ -224,16 +262,26 @@ nav.top-nav a.active {
 }
 
 @media (max-width: 900px) {
+  .main-content-bgimg {
+    border-radius: 12px;
+    margin-left: 0;
+    margin-right: 0;
+  }
   .main-content-overlay {
-    padding: 18px 2vw 18px 2vw;
-    max-width: 100vw;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    word-break: break-word;
+    box-sizing: border-box;
   }
 }
-
 @media (max-width: 650px) {
   .main-content-overlay {
-    padding: 9px 1vw 9px 1vw;
-    max-width: 100vw;
+    max-width: 98vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
   }
 }
 
@@ -580,27 +628,21 @@ ul:not(.admin-block ul) li::before {
   user-select: none;
 }
 
+/* --- Только для мобильной версии --- */
 @media (max-width: 900px) {
-  .main-content-bgimg {
-    /* Чтобы фон занимал всю ширину, а не создавал горизонтальный скролл */
-    border-radius: 12px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .main-content-overlay {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    word-break: break-word;
+  .news-images-wrapper img {
+    max-width: 100vw;
+    width: 100%;
+    height: auto;
+    max-height: 40vw;
+    object-fit: contain;
     box-sizing: border-box;
   }
 }
+
 @media (max-width: 650px) {
-  .main-content-overlay {
+  .news-images-wrapper img {
     max-width: 98vw;
-    padding-left: 3vw;
-    padding-right: 3vw;
+    max-height: 55vw;
   }
 }
