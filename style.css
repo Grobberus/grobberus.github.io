@@ -1,8 +1,7 @@
-/* === Общие стили для всего сайта === */
-
 body {
   margin: 0;
   font-family: 'Georgia', serif;
+  font-size: 1.09em;
   display: flex;
   min-height: 100vh;
   background: linear-gradient(135deg, #2c1a0f 0%, #4e2a0a 100%);
@@ -14,7 +13,6 @@ body {
   box-shadow: inset 0 0 60px #1e1107;
 }
 
-/* === Меню слева === */
 nav.side-nav {
   display: flex;
   flex-direction: column;
@@ -94,7 +92,6 @@ nav.side-nav a.active {
   text-decoration: none;
 }
 
-/* === Контент и футер === */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -132,6 +129,7 @@ nav.side-nav a.active {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-size: 1.13em;
 }
 
 @media (max-width: 900px) {
@@ -155,7 +153,7 @@ h1 {
 }
 
 .server-description {
-  font-size: 1.04em;
+  font-size: 1.13em;
   line-height: 1.45;
   color: #f5e6c4;
   margin-bottom: 16px;
@@ -167,7 +165,7 @@ h1 {
 
 .server-ip-row {
   margin: 18px 0 0 0;
-  font-size: 1.15em;
+  font-size: 1.18em;
   font-weight: bold;
   color: #ffb84d;
   background: #3e2a13cc;
@@ -193,55 +191,6 @@ h1 {
   font-size: 1.18em;
   letter-spacing: 0.06em;
   text-shadow: 0 0 8px #ffb84d77;
-}
-
-/* --- Админка --- */
-.admin-block {
-  background: rgba(60,30,10,0.93);
-  border: 2px solid #ffb84d;
-  border-radius: 13px;
-  padding: 14px 18px 10px 18px;
-  font-size: 1em;
-  color: #f5e6c4;
-  box-shadow: 0 2px 10px #ffb84d22;
-  width: 100%;
-  max-width: 420px;
-  margin-top: 32px;
-}
-
-.admin-title {
-  font-weight: bold;
-  color: #ffb84d;
-  font-size: 1.13em;
-  margin-bottom: 7px;
-  letter-spacing: 0.04em;
-}
-
-.admin-block ul {
-  margin: 0 0 0 0;
-  padding: 0 0 0 18px;
-  list-style: none;
-}
-.admin-block li {
-  margin-bottom: 7px;
-  position: relative;
-  padding-left: 0;
-}
-.admin-block li::before { content: none !important; }
-.admin-block li b {
-  color: #ffb84d;
-  font-weight: bold;
-}
-
-/* --- Кастомные маркеры для обычных списков --- */
-ul:not(.admin-block ul) li::before {
-  content: "◆";
-  color: #ffb84d;
-  position: absolute;
-  left: 0;
-  font-size: 1.1em;
-  top: 0.1em;
-  font-family: 'Georgia', serif;
 }
 
 /* --- Кнопки --- */
@@ -320,7 +269,6 @@ footer {
   animation: fadeIn 0.7s ease forwards;
 }
 
-/* --- Один гвоздик (левый верхний угол) --- */
 .news-item .nail {
   position: absolute;
   width: 18px;
@@ -394,7 +342,6 @@ footer {
   opacity: 0.55;
 }
 
-/* === Лупа - оверлей === */
 .image-lightbox-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -415,7 +362,6 @@ footer {
   user-select: none;
 }
 
-/* === Футер === */
 footer {
   text-align: center;
   padding: 10px 10px 12px 10px;
@@ -432,7 +378,6 @@ footer {
 footer p { margin: 0; padding: 0; list-style: none; }
 footer::before, footer::after, footer p::before, footer p::after { content: none !important; }
 
-/* === Кастомные маркеры для списков === */
 ul { list-style: none; padding-left: 0; }
 ul li {
   position: relative;
@@ -449,7 +394,6 @@ ul:not(.admin-block ul) li::before {
   font-family: 'Georgia', serif;
 }
 
-/* === Адаптив === */
 @media (max-width: 900px) {
   .main-content-overlay {
     padding: 24px 10px 24px 10px;
@@ -472,7 +416,6 @@ ul:not(.admin-block ul) li::before {
   }
 }
 
-/* Стилизация полосы прокрутки под стиль сайта */
 body, .content-wrapper {
   scrollbar-width: thin;
   scrollbar-color: #ffb84d #3e2a13;
