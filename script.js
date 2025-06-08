@@ -131,6 +131,7 @@ function onScrollLoadMore() {
   }
 }
 
+// Исправленная функция лупы с правильным центрированием
 function openImageLightbox(src, alt) {
   // Удалить предыдущий лайтбокс, если он есть
   const oldOverlay = document.querySelector('.image-lightbox-overlay');
@@ -146,7 +147,7 @@ function openImageLightbox(src, alt) {
   overlay.appendChild(img);
   document.body.appendChild(overlay);
 
-  // Закрытие по клику вне картинки
+  // Центрирование и закрытие по клику вне картинки
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
       overlay.remove();

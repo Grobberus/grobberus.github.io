@@ -413,6 +413,33 @@ footer::before, footer::after, footer p::before, footer p::after { content: none
   color: #ffefcf;
 }
 
+/* --- Лайтбокс для изображений (лупа) --- */
+.image-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s;
+  overflow: auto;
+}
+
+.image-lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255,140,0,0.8);
+  user-select: none;
+  margin: auto;
+  display: block;
+}
+
 /* --- Адаптивность --- */
 @media (max-width: 1200px) {
   .main-content-overlay,
