@@ -448,8 +448,21 @@ ul:not(.admin-block ul) li::before {
   top: 0.1em;
   font-family: 'Georgia', serif;
 }
-.admin-block li { padding-left: 0; }
-.admin-block li::before { content: none; }
+
+/* --- Админ-блок: ромбики с отступом на всех устройствах --- */
+.admin-block li {
+  padding-left: 1.3em;
+  position: relative;
+}
+.admin-block li::before {
+  content: "◆";
+  color: #ffb84d;
+  position: absolute;
+  left: 0;
+  font-size: 1.1em;
+  top: 0.1em;
+  font-family: 'Georgia', serif;
+}
 
 /* --- Новости --- */
 .news-item {
@@ -524,6 +537,7 @@ ul:not(.admin-block ul) li::before {
   transition: transform 0.3s ease;
   cursor: pointer;
   background: #2b1c0a;
+  max-width: 100%;
 }
 
 .news-images-wrapper img:hover { transform: scale(1.05); }
@@ -580,28 +594,9 @@ ul:not(.admin-block ul) li::before {
   }
 }
 
-/* Дополнительная корректировка для совсем маленьких экранов */
 @media (max-width: 650px) {
   .news-images-wrapper img {
     max-width: 98vw;
     max-height: 55vw;
-  }
-}
-
-/* Правила: отступ для админов на мобильных */
-@media (max-width: 900px) {
-  .admin-block li {
-    padding-left: 1.3em;
-    position: relative;
-  }
-  .admin-block li::before {
-    content: "◆";
-    color: #ffb84d;
-    position: absolute;
-    left: 0;
-    font-size: 1.1em;
-    top: 0.1em;
-    font-family: 'Georgia', serif;
-    /* Добавлен ромбик только для мобильной версии */
   }
 }
