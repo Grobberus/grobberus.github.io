@@ -120,11 +120,11 @@ nav.side-nav a.active {
   backdrop-filter: blur(2px);
 }
 
-/* === Главная страница: две колонки === */
+/* === Главная страница: две колонки, фото и админка справа === */
 .main-content-flex {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 40px;
   min-height: 420px;
   height: 420px;
@@ -137,16 +137,18 @@ nav.side-nav a.active {
   max-width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }
 
 .main-left {
   padding-right: 16px;
+  justify-content: flex-start;
 }
 
 .main-right {
-  align-items: center;
   padding-left: 16px;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 h1 {
@@ -203,7 +205,7 @@ h1 {
 .main-image-wrapper {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .main-image {
@@ -213,8 +215,8 @@ h1 {
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 2px 18px #0007, 0 0 0 3px #ffb84d55;
-  margin-bottom: 18px;
-  margin-top: 8px;
+  margin-bottom: 0;
+  margin-top: 0;
   background: #2c1a0f;
   display: block;
   border: 3px solid #ffb84d;
@@ -222,17 +224,19 @@ h1 {
   outline-offset: -4px;
 }
 
+/* Админка всегда внизу, ширина как у фото */
 .admin-block {
   background: rgba(60,30,10,0.93);
   border: 2px solid #ffb84d;
   border-radius: 13px;
-  margin-top: 0;
   padding: 14px 18px 10px 18px;
   font-size: 1em;
   color: #f5e6c4;
   box-shadow: 0 2px 10px #ffb84d22;
   width: 100%;
   max-width: 340px;
+  margin-top: auto;
+  align-self: flex-end;
 }
 
 .admin-title {
@@ -482,6 +486,10 @@ ul li::before {
   .main-image, .admin-block {
     max-width: 100%;
   }
+  .main-right {
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 650px) {
@@ -500,6 +508,10 @@ ul li::before {
   }
   .main-image, .admin-block {
     max-width: 100%;
+  }
+  .main-right {
+    align-items: center;
+    justify-content: flex-start;
   }
   .server-description {
     font-size: 0.97em;
