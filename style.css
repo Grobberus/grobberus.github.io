@@ -6,7 +6,6 @@ html {
   scrollbar-color: #ffb84d #3e2a13;
 }
 
-/* Кастомный скроллбар для Chrome/Safari/Edge */
 html::-webkit-scrollbar {
   width: 12px;
   background: #3e2a13;
